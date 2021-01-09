@@ -1,0 +1,29 @@
+http:
+  routers:
+    api:
+      entryPoints:
+        - web
+        - websecure
+      rule: Host(`traefik`)
+      service: api@internal
+    router:
+      entryPoints:
+        - web
+        - websecure
+      rule: Host(`router`)
+      service: router
+    proxmox:
+      entryPoints:
+        - websecure
+      rule: Host(`proxmox`)
+      service: proxmox
+
+  services:
+    router:
+      loadBalancer:
+        servers:
+          - url: http://192.168.1.1      
+    proxmox:
+      loadBalancer:
+        servers:
+          - url: https://pve:8006      

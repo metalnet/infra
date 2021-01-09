@@ -1,0 +1,16 @@
+[router]
+vyos
+
+[router:vars]
+ansible_connection=ansible.netcommon.network_cli
+ansible_network_os=vyos.vyos.vyos
+ansible_password=vyos
+
+[debian]
+pve
+mnjump
+mnshare
+mnapps
+
+[debian:vars]
+ansible_python_interpreter=/usr/bin/python3

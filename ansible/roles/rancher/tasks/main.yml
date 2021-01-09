@@ -1,0 +1,14 @@
+- name: add a docker volume
+  docker_volume:
+    name: rancher
+- name: deploy container
+  docker_container:
+    name: rancher
+    image: rancher/rancher
+    restart_policy: unless-stopped
+    privileged: yes
+    ports:
+      - "9080:80"
+      - "9443:443"
+    volumes:
+      - rancher:/var/lib/rancher

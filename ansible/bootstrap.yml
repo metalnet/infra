@@ -1,0 +1,9 @@
+---
+- name: pve
+  hosts:
+    - pve
+  connection: paramiko
+  roles:
+    - proxmox
+    - vyos-iso
+    - debian-template

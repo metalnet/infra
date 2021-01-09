@@ -1,0 +1,47 @@
+---
+version: "3.3"
+
+services:
+  traefik:
+    image: "traefik"
+    command:
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.websecure.address=:443"
+      - "--entrypoints.websecure.http.tls"
+      - "--entrypoints.traefik.address=:8081"
+      - "--entrypoints.mcforge-tcp.address=:25565"
+      - "--entrypoints.mcforge-udp.address=:25565/udp"
+      - "--entrypoints.mcmohist-tcp.address=:25566"
+      - "--entrypoints.mcmohist-udp.address=:25566/udp"
+      - "--api.insecure=true"
+      - "--serverstransport.insecureskipverify=true"
+      - "--providers.file.directory=/traefik"
+      - "--providers.file.watch=true"
+      - "--providers.docker=true"
+      - "--providers.docker.swarmMode=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--providers.docker.network=traefik"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8081:8081"
+      - "25565:25565/tcp"
+      - "25565:25565/udp"
+      - "25566:25566/tcp"
+      - "25566:25566/udp"
+    networks:
+      - traefik
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - "data:/traefik"
+
+networks:
+  traefik:
+    external: true
+
+volumes:
+  data:
+    driver_opts:
+      type: "nfs"
+      device: ":/traefik"
+      o: "addr=mnshare,rw,noatime,rsize=8192,wsize=8192,tcp,timeo=14,nfsvers=4"

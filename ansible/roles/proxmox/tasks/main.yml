@@ -1,0 +1,39 @@
+---
+- name: add open source apt source
+  apt_repository:
+    repo: deb http://download.proxmox.com/debian/pve buster pve-no-subscription
+    state: present
+    filename: pve-no-subscription
+- name: remove enterprise apt source
+  apt_repository:
+    repo: deb https://enterprise.proxmox.com/debian/pve buster pve-enterprise
+    state: absent
+- name: install packages
+  package:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - ifupdown2
+    - expect
+- name: setup network interfaces (/etc/network/interfaces or use the api through pvesh)
+  debug:
+    msg: "Placeholder"
+- name: reload network configuration
+  debug:
+    msg: "Placeholder"
+- name: get container template information
+  shell:
+    cmd: pveam available --section system | cut -c17- | grep debian-10
+  register: container
+  changed_when: false
+- name: download container template
+  shell:
+    cmd: pveam download local {{ container.stdout }}
+  register: download_result
+  changed_when: download_result.stdout is not search('no need to download')
+- name: enable snippets in local storage (could use pvesm utility for this too)
+  lineinfile:
+    path: /etc/pve/storage.cfg
+    regexp: 'content vztmpl'
+    line: '        content vztmpl,snippets,backup,iso'
+    state: present

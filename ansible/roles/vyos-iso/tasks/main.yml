@@ -1,0 +1,5 @@
+---
+- name: download disk image
+  get_url:
+    url: https://downloads.vyos.io/rolling/current/amd64/vyos-rolling-latest.iso
+    dest: /var/lib/vz/template/iso/

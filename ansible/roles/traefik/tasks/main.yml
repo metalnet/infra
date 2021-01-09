@@ -1,0 +1,36 @@
+---
+- name: create network
+  docker_network:
+    name: traefik
+    driver: overlay
+- name: mount nfs share
+  mount:
+    fstype: nfs
+    src: mnshare:/
+    path: /mnt
+    opts: 
+    state: mounted
+  changed_when: false
+- name: setup data directory
+  file:
+    path: /mnt/traefik
+    mode: '0777'
+    state: directory
+- name: copy traefik configuration
+  copy:
+    src: ../stacks/traefik-config.yml
+    dest: /mnt/traefik/traefik-config.yml
+- name: unmount nfs share
+  mount:
+    path: /mnt
+    state: unmounted
+  changed_when: false
+- name: copy stack configuration
+  copy:
+    src: ../stacks/traefik.yml
+    dest: ~/traefik.yml
+- name: deploy stack
+  docker_stack:
+    name: traefik
+    compose:
+      - ~/traefik.yml

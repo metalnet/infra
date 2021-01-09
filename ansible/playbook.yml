@@ -1,0 +1,43 @@
+---
+- name: vyos
+  hosts:
+    - vyos
+  remote_user: vyos
+  roles:
+    - vyos
+- name: mnjump
+  hosts:
+    - mnjump
+  roles:
+    - jumphost
+- name: mnshare
+  hosts:
+    - mnshare
+  remote_user: debian
+  become: true
+  roles:
+    - nfs
+    - samba
+- name: mnapps
+  hosts:
+    - mnapps
+  become: true
+  remote_user: debian
+  roles:
+    - role: traefik
+    - role: rancher
+    - role: docker-stack
+      vars:
+        name: portainer
+        volume_path: portainer
+        stack_file_name: portainer.yml
+    - role: docker-stack
+      vars:
+        name: unifi
+        volume_path: unifi
+        stack_file_name: unifi.yml
+    - role: docker-stack
+      vars:
+        name: syncthing
+        volume_path: syncthing
+        stack_file_name: syncthing.yml
