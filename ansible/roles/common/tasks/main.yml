@@ -1,0 +1,5 @@
+---
+- name: install node-exporter
+  package:
+    name: prometheus-node-exporter
+    state: present

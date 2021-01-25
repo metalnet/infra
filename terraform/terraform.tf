@@ -65,6 +65,7 @@ resource "proxmox_vm_qemu" "router" {
 
 resource "proxmox_lxc" "mnjump" {
   hostname = "mnjump"
+  onboot = true
   memory = 1024
   swap = 0
   rootfs {
@@ -100,7 +101,7 @@ resource "proxmox_lxc" "mnjump" {
         ansible_python_interpreter = "/usr/bin/python3"
       }
       hosts = [
-	"mnjump"
+	      "mnjump"
       ]
     }
     ansible_ssh_settings {
@@ -113,6 +114,7 @@ locals {
   hosts = {
     mnshare = {
       name = "mnshare"
+      cores = 1
       memory = 1024
       disksize = "4G"
       otherdisks = [{
@@ -120,11 +122,18 @@ locals {
         storage = ""
         volume = "/dev/mn/nfs"
         size = "100G"
+      },
+      {
+        type = "virtio"
+        storage = ""
+        volume = "/dev/mn/samba"
+        size = "5120G"
       }]
     },
     mnapps = {
       name = "mnapps"
-      memory = 4096
+      cores = 4
+      memory = 8192
       disksize = "20G"
       otherdisks = []
     }
@@ -165,7 +174,7 @@ resource "proxmox_vm_qemu" "metalnet" {
   for_each = local.hosts
   name = each.value.name
   target_node = "pve"
-  clone = "buster-base-template"
+  clone = "debian-template"
   os_type = "cloud-init"
   agent = 1
   ipconfig0 = "ip=dhcp"
@@ -173,11 +182,14 @@ resource "proxmox_vm_qemu" "metalnet" {
   cicustom = "user=local:snippets/${each.value.name}.yml"
   force_recreate_on_change_of = local_file.cloud_init_user_data_file[each.value.name].content
 
+  cores = each.value.cores
   memory = each.value.memory
 
   disk {
-    type = "virtio"
+    type = "scsi"
     storage = "local-lvm"
+    ssd = "1"
+    discard = "on"
     size = each.value.disksize
   }
 
@@ -214,7 +226,7 @@ resource "proxmox_vm_qemu" "metalnet" {
         ansible_python_interpreter = "/usr/bin/python3"
       }
       hosts = [
-	each.value.name
+	      each.value.name
       ]
     }
     ansible_ssh_settings {

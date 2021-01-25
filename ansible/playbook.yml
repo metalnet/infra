@@ -9,6 +9,7 @@
   hosts:
     - mnjump
   roles:
+    - common
     - jumphost
 - name: mnshare
   hosts:
@@ -16,6 +17,7 @@
   remote_user: debian
   become: true
   roles:
+    - common
     - nfs
     - samba
 - name: mnapps
@@ -24,6 +26,7 @@
   become: true
   remote_user: debian
   roles:
+    - role: common
     - role: traefik
     - role: rancher
     - role: docker-stack
@@ -33,11 +36,6 @@
         stack_file_name: portainer.yml
     - role: docker-stack
       vars:
-        name: unifi
-        volume_path: unifi
-        stack_file_name: unifi.yml
-    - role: docker-stack
-      vars:
-        name: syncthing
-        volume_path: syncthing
-        stack_file_name: syncthing.yml
+        name: nginx
+        volume_path: nginx
+        stack_file_name: nginx.yml

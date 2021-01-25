@@ -1,0 +1,13 @@
+---
+- name: mount storage
+  mount:
+    path: /export
+    src: /dev/vda
+    fstype: auto
+    state: mounted
+- name: mount storage
+  mount:
+    path: /smb
+    src: /dev/vdb
+    fstype: auto
+    state: mounted

@@ -1,0 +1,26 @@
+---
+version: "3.3"
+services:
+  nginx:
+    image: nginx
+    volumes:
+      - data:/usr/share/nginx/html
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.nginx.entrypoints=web
+        - traefik.http.routers.nginx.rule=Host(`nginx`) || Host(`nginx.apps.metalnet`)
+        - traefik.http.services.nginx.loadbalancer.server.port=80
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true
+
+volumes:
+  data:
+    driver_opts:
+      type: "nfs"
+      device: ":/nginx"
+      o: "addr=mnshare,rw,noatime,rsize=8192,wsize=8192,tcp,timeo=14,nfsvers=4"
