@@ -1,0 +1,28 @@
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    volumes:
+      - /home/debian/homepage:/app/config
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      HOMEPAGE_ALLOWED_HOSTS: www.metalnet.org,metalnet.org,homepage.apps.metalnet.org,homepage
+
+    deploy:
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.homepage.rule=Host(`www.metalnet.org`) || Host(`metalnet.org`) || Host(`homepage.apps.metalnet.org`) || Host(`homepage`)
+        - traefik.http.routers.homepage.entrypoints=websecure
+        - traefik.http.routers.homepage.service=homepage
+        - traefik.http.routers.homepage.tls=true
+        - traefik.http.routers.homepage.tls.certresolver=le
+        - traefik.http.routers.homepage.tls.domains[0].main=metalnet.org
+        - traefik.http.routers.homepage.tls.domains[0].sans=www.metalnet.org
+        - traefik.http.services.homepage.loadbalancer.server.port=3000
+
+    networks:
+     - traefik
+
+
+networks:
+  traefik:
+    external: true
