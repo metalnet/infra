@@ -1,5 +1,0 @@
----
-- name: restart smbd service
-  service:
-    name: smbd
-    state: restarted
