@@ -2,7 +2,7 @@ services:
   homepage:
     image: ghcr.io/gethomepage/homepage:latest
     volumes:
-      - /home/debian/homepage:/app/config
+      - /mnt/ceph/homepage:/app/config
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       HOMEPAGE_ALLOWED_HOSTS: www.metalnet.org,metalnet.org,homepage.apps.metalnet.org,homepage
