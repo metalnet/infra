@@ -4,6 +4,9 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
+    environment:
+      CURSEFORGE_API_KEY: ${CURSEFORGE_API_KEY}
+
     deploy:
       labels:
         - traefik.enable=true
