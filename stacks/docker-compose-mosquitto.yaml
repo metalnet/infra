@@ -1,0 +1,31 @@
+services:
+  mosquitto:
+    image: eclipse-mosquitto:latest
+
+    volumes:
+      - /mnt/ceph/mosquitto/config:/mosquitto/config
+      - /mnt/ceph/mosquitto/data:/mosquitto/data
+      - /mnt/ceph/mosquitto/log:/mosquitto/log
+
+    deploy:
+      mode: replicated
+      replicas: 1
+      labels:
+        - traefik.enable=true
+        - traefik.tcp.routers.mqtt.tls=true
+        - traefik.tcp.routers.mqtt.tls.certresolver=le
+        - traefik.tcp.routers.mqtt.tls.domains[0].main=mqtt.apps.metalnet.org
+        - traefik.tcp.routers.mqtt.rule=HostSNI(`*`)
+        - traefik.tcp.routers.mqtt.entrypoints=mqtt
+        - traefik.tcp.routers.mqtt.service=mqtt
+        - traefik.tcp.services.mqtt.loadbalancer.server.port=1883
+        - traefik.tcp.routers.mqtt-websocket.rule=HostSNI(`*`)
+        - traefik.tcp.routers.mqtt-websocket.entrypoints=websocket
+        - traefik.tcp.routers.mqtt-websocket.service=mqtt-websocket
+        - traefik.tcp.services.mqtt-websocket.loadbalancer.server.port=9001
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true
