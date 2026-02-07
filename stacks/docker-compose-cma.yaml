@@ -1,6 +1,6 @@
 services:
   cma:
-    image: "ghcr.io/mshogren/container-minecraft-app:latest@sha256:a2517ec4e05ad66d06f0f5264c379fed37051c89818fc905c3b722d4de5d45c3"
+    image: "ghcr.io/mshogren/container-minecraft-app:latest@sha256:2cc89e6b114b036ab7526f2c39e948045f01840d4d8bb473f0ff0b9550e13bfa"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
 
