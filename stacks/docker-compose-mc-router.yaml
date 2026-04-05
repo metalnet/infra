@@ -1,6 +1,6 @@
 services:
   router:
-    image: itzg/mc-router:latest@sha256:be109433f1a67a6d925d93842018ae4d9dcb37f9df5ef3b246925343782233ab
+    image: itzg/mc-router:latest@sha256:14a9eedcce5955ade0ef0e4c954b45ecdbff55aac1564e484d59d0836b05c5d1
     command: --in-docker-swarm
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
