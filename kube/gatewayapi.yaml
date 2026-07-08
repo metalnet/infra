@@ -8,9 +8,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com
-    targetRevision: v1.5.0
-    path: config/crd/standard
+    repoURL: https://github.com/kubernetes-sigs/gateway-api
+    targetRevision: v1.6.0
+    path: config/crd/experimental
   destination:
     server: https://kubernetes.default.svc
     namespace: default
