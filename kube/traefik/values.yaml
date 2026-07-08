@@ -12,3 +12,7 @@ gateway:
     web:
       namespacePolicy:
         from: All
+
+    websecure:
+      namespacePolicy:
+        from: All
