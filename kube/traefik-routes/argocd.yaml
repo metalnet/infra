@@ -7,7 +7,7 @@ spec:
   parentRefs:
     - name: traefik-gateway
       namespace: traefik
-      sectionName: http
+      sectionName: https
   hostnames:
     - "argocd.kube.metalnet.org"
   rules:
