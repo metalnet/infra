@@ -16,6 +16,7 @@ spec:
     path: kube/metallb
   destination:
     server: https://kubernetes.default.svc
+    namespace: metallb-system
   syncPolicy:
     automated:
       selfHeal: true
