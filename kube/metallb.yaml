@@ -4,16 +4,21 @@ metadata:
   name: metallb
   namespace: argocd
 spec:
+  project: default
+  sources:
+  - repoURL: https://metallb.github.io/metallb
+    targetRevision: 0.16.1
+    chart: metallb
+    helm:
+      releaseName: metallb
+  - repoURL: https://github.com/metalnet/infra
+    targetRevision: HEAD
+    path: kube/metallb
   destination:
     server: https://kubernetes.default.svc
-    namespace: metallb-system
-  project: default
-  source:
-    path: kube/metallb
-    repoURL: https://github.com/metalnet/infra
-    targetRevision: HEAD
   syncPolicy:
     automated:
       selfHeal: true
       prune: true
       enabled: true
+
