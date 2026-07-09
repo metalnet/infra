@@ -4,6 +4,7 @@ metadata:
   name: argocd-gateway
   namespace: argocd
 spec:
+  gatewayClassName: traefik
   listeners:
     - name: http
       protocol: HTTP
@@ -20,7 +21,7 @@ metadata:
 spec:
   parentRefs:
     - name: argocd-gateway
-      namespace: argicd
+      namespace: argocd
       sectionName: http
   hostnames:
     - "argocd2.kube.metalnet.org"
