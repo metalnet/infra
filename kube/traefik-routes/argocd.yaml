@@ -14,7 +14,9 @@ spec:
     - backendRefs:
         - name: argocd-server
           port: 80
+          kind: Service
+          group: ""
       matches:
         - path:
-          type: PathPrefix
-          value: /
+            type: PathPrefix
+            value: /
