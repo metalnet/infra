@@ -6,8 +6,9 @@ metadata:
 spec:
   gatewayClassName: traefik
   listeners:
-    - name: http
+    - name: web
       protocol: HTTP
+      hostname: "argocd2.kube.metalnet.org"
       port: 8000
       allowedRoutes:
         namespaces:
