@@ -23,7 +23,7 @@ spec:
   parentRefs:
     - name: argocd-gateway
       namespace: argocd
-      sectionName: http
+      sectionName: web
   hostnames:
     - "argocd2.kube.metalnet.org"
   rules:
