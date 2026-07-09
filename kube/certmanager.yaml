@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   sources:
-  - repoURL: oci://quay.io/jetstack/charts
+  - repoURL: oci://quay.io/jetstack/charts/cert-manager
     targetRevision: v1.21.0
     chart: cert-manager
     helm:
