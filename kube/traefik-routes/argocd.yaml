@@ -7,13 +7,13 @@ spec:
   parentRefs:
     - name: traefik-gateway
       namespace: traefik
-      sectionName: https
+      sectionName: http
   hostnames:
     - "argocd.kube.metalnet.org"
   rules:
     - backendRefs:
         - name: argocd-server
-          port: 443
+          port: 80
       matches:
         - path:
             type: PathPrefix
