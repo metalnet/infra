@@ -21,7 +21,7 @@ providers:
         routers:
           ipmi:
             entryPoints:
-              - websecure
+              - web
             rule: Host(`ipmi.kube.metalnet.org`) || Host(`ipmi`)
             service: ipmi
         services:
