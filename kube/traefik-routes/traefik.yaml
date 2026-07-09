@@ -8,7 +8,7 @@ spec:
   listeners:
     - name: web
       protocol: HTTP
-      hostname: "traefik2.kube.metalnet.org"
+      hostname: "traefik.kube.metalnet.org"
       port: 8000
       allowedRoutes:
         namespaces:
@@ -25,7 +25,7 @@ spec:
       namespace: traefik
       sectionName: web
   hostnames:
-    - "traefik2.kube.metalnet.org"
+    - "traefik.kube.metalnet.org"
   rules:
     - backendRefs:
         - name: api@internal

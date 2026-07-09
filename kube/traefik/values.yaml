@@ -12,15 +12,5 @@ providers:
     enabled: true
     experimentalChannel: true
 gateway:
-  listeners:
-    web:
-      protocol: HTTP
-      namespacePolicy:
-        from: All
-ingressRoute:
-  dashboard:
-    enabled: true
-    matchRule: Host(`traefik.kube.metalnet.org`)
-    entryPoints:
-      - web
+  enabled: false
 
