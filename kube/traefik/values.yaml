@@ -1,16 +1,26 @@
-ingressRoute:
-  dashboard:
-    enabled: true
-    matchRule: Host(`traefik.kube.metalnet.org`)
-    entryPoints:
-      - web
-providers:
+ingressClass:
+  enabled: false
+experimental:
   kubernetesGateway:
     enabled: true
+api:
+  insecure: true
+providers:
+  kubernetesIngress:
+    enabled: false
+  kubernetesGateway:
+    enabled: true
+    experimentalChannel: true
 gateway:
   listeners:
     web:
       protocol: HTTP
       namespacePolicy:
         from: All
+ingressRoute:
+  dashboard:
+    enabled: true
+    matchRule: Host(`traefik.kube.metalnet.org`)
+    entryPoints:
+      - web
 
