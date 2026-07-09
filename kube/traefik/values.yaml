@@ -8,6 +8,8 @@ api:
 providers:
   kubernetesIngress:
     enabled: false
+  kubernetesCRD:
+    allowExternalNameServices: true
   kubernetesGateway:
     enabled: true
     experimentalChannel: true
