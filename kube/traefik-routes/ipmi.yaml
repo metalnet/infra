@@ -1,0 +1,81 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ipmi-service
+  namespace: traefik
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
+---
+apiVersion: discovery.k8s.io/v1
+kind: EndpointSlice
+metadata:
+  name: external-service-slice
+  namespace: traefik
+  labels:
+    kubernetes.io/service-name: impi-service
+addressType: FQDN
+ports:
+  - name: http
+    protocol: TCP
+    port: 443
+endpoints:
+  - addresses:
+      - "ipmi.metalnet.org"
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: BackendTLSPolicy
+metadata:
+  name: ipmi-tls-policy
+  namespace: traefik
+spec:
+  targetRefs:
+    - group: ""
+      kind: Service
+      name: ipmi-service
+  validation:
+    hostname: "ipmi.metalnet.org"
+    options:
+      insecureSkipVerify: "true"
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: ipmi-gateway
+  namespace: traefik
+spec:
+  gatewayClassName: traefik
+  listeners:
+    - name: web
+      protocol: HTTP
+      hostname: "ipmi.kube.metalnet.org"
+      port: 8000
+      allowedRoutes:
+        namespaces:
+          from: Same
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: ipmi-http-route
+  namespace: traefik
+spec:
+  parentRefs:
+    - name: ipmi-gateway
+      namespace: traefik
+      sectionName: web
+  hostnames:
+    - "ipmi.kube.metalnet.org"
+  rules:
+    - backendRefs:
+        - name: ipmi-service
+          port: 80
+          kind: Service
+          group: ""
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
