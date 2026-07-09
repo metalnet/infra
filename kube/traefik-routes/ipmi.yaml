@@ -1,0 +1,36 @@
+apiVersion: traefik.io/v1alpha1
+kind: ServersTransport
+metadata:
+  name: ipmi-tls-transport
+  namespace: traefik
+spec:
+  serverName: ipmi.metalnet.org
+  insecureSkipVerify: true
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ipmi-service
+  namespace: traefik
+spec:
+  type: ExternalName
+  externalName: ipmi.metalnet.org
+  ports:
+    - name: https
+      port: 443
+---
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
+metadata:
+  name: ipmi-route
+  namespace: traefik
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`ipmi2.kube.metalnet.org`)
+      kind: Rule
+      services:
+        - name: ipmi-service
+          port: 443
+          serversTransport: ipmi-tls-transport
