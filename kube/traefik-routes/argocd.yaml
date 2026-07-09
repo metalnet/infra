@@ -19,6 +19,6 @@ spec:
       services:
         - name: argocd-server
           port: 80
-         scheme: h2c
+          scheme: h2c
   tls:
     certResolver: default
