@@ -4,4 +4,7 @@
     "config:best-practices",
     "default:automergeDigest"
   ]
+  "argocd": {
+    "managerFilePatterns": ["/kube/.+\\.yaml$/"]
+  }
 }
