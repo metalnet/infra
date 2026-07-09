@@ -28,7 +28,7 @@ spec:
   entryPoints:
     - web
   routes:
-    - match: Host(`ipmi2.kube.metalnet.org`)
+    - match: Host(`ipmi.kube.metalnet.org`)
       kind: Rule
       services:
         - name: ipmi-service

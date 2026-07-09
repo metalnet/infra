@@ -13,25 +13,6 @@ providers:
   kubernetesGateway:
     enabled: true
     experimentalChannel: true
-  file:
-    enabled: true
-    content:
-      http:
-        serversTransports:
-          insecuretransport:
-            insecureSkipVerify: true
-        routers:
-          ipmi:
-            entryPoints:
-              - web
-            rule: Host(`ipmi.kube.metalnet.org`) || Host(`ipmi`)
-            service: ipmi
-        services:
-          ipmi:
-            loadBalancer:
-              serversTransport: insecuretransport
-              servers:
-                - url: https://ipmi.metalnet.org
 gateway:
   enabled: false
 
