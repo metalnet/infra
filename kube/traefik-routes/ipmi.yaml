@@ -38,6 +38,7 @@ spec:
       name: ipmi-service
   validation:
     hostname: "ipmi.metalnet.org"
+    wellKnownCACertificates: System
     options:
       insecureSkipVerify: "true"
 ---
