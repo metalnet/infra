@@ -8,7 +8,7 @@ spec:
   listeners:
     - name: web
       protocol: HTTP
-      hostname: "argocd2.kube.metalnet.org"
+      hostname: "argocd.kube.metalnet.org"
       port: 8000
       allowedRoutes:
         namespaces:
@@ -17,35 +17,12 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: argocd2-http-route
+  name: argocd-http-route
   namespace: argocd
 spec:
   parentRefs:
     - name: argocd-gateway
       namespace: argocd
-      sectionName: web
-  hostnames:
-    - "argocd2.kube.metalnet.org"
-  rules:
-    - backendRefs:
-        - name: argocd-server
-          port: 80
-          kind: Service
-          group: ""
-      matches:
-        - path:
-            type: PathPrefix
-            value: /
----
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
-metadata:
-  name: argocd-http-route
-  namespace: argocd
-spec:
-  parentRefs:
-    - name: traefik-gateway
-      namespace: traefik
       sectionName: web
   hostnames:
     - "argocd.kube.metalnet.org"
@@ -59,3 +36,28 @@ spec:
         - path:
             type: PathPrefix
             value: /
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: GRPCRoute
+metadata:
+  name: argocd--grpc-route
+  namespace: argocd
+spec:
+  parentRefs:
+    - name: argocd-gateway
+      namespace: argocd
+      sectionName: web
+  hostnames:
+    - "argocd.kube.metalnet.org"
+  rules:
+    - backendRefs:
+        - name: argocd-server
+          port: 80
+          kind: Service
+          group: ""
+      matches:
+        - headers:
+            - name: Content-Type
+              type: RegularExpression
+              value: "^application/grpc.*$"
+
