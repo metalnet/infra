@@ -6,8 +6,8 @@ metadata:
 spec:
   project: default
   sources:
-  - repoURL: oci://ghcr.io/piraeusdatastore/piraeus-operator
-    targetRevision: 2.10.7
+  - repoURL: oci://ghcr.io/piraeusdatastore/piraeus-operator/piraeus
+    targetRevision: 2.10.8
     chart: piraeus
     helm:
       releaseName: piraeus
