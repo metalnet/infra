@@ -29,8 +29,8 @@ spec:
   issuerRef:
     name: cloudflare-acme-issuer
     kind: ClusterIssuer
-dnsNames:
-  - ipmi.kube.metalnet.org
+  dnsNames:
+    - ipmi.kube.metalnet.org
 ---
 apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
