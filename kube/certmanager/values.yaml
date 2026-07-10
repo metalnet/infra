@@ -3,5 +3,6 @@ config:
     enabled: true
 crds:
   enabled: true
+enableCertificateOwnerRef: true
 dns01RecursiveNameservers: "1.1.1.1:53"
 
