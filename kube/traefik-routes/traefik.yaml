@@ -29,7 +29,7 @@ spec:
   parentRefs:
     - name: traefik-gateway
       namespace: traefik
-      sectionName: web
+      sectionName: websecure
   hostnames:
     - "traefik.kube.metalnet.org"
   rules:
