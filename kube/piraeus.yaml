@@ -13,7 +13,7 @@ spec:
       releaseName: piraeus
       valueFiles:
       - $values/kube/piraeus/values.yaml
-  - repoURL: oci://ghcr.io/piraeusdatastore/helm-charts
+  - repoURL: oci://ghcr.io/piraeusdatastore/helm-charts/linstor-cluster
     targetRevision: 1.1.1
     chart: linstor-cluster
     helm:
