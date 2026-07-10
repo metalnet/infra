@@ -1,0 +1,10 @@
+#get the certificate from the sealed secrets controller
+docker run --rm -it -v $PWD/kubeconfig.yaml:/.kube/config -e KUBECONFIG=/.kube/config \
+bitnami/sealed-secrets-kubeseal:latest --controller-namespace sealed-secrets \
+--controller-name sealed-secrets --fetch-cert > sealed-secrets.pem
+
+#generate a yaml secret to commit
+kubectl --kubeconfig=kubeconfig.yaml -n cert-manager create secret generic my-secret \
+--from-literal=password='supersecret' --dry-run=client -o yaml | \
+docker run --rm -i -v "$(pwd)/sealed-secrets.pem:/pub-cert.pem:ro" \
+bitnami/sealed-secrets-kubeseal:latest --cert /pub-cert.pem > sealed-secret.yaml
