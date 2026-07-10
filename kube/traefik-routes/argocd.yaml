@@ -3,16 +3,22 @@ kind: Gateway
 metadata:
   name: argocd-gateway
   namespace: argocd
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare-acme-issuer
 spec:
   gatewayClassName: traefik
   listeners:
-    - name: web
-      protocol: HTTP
+    - name: websecure
+      protocol: HTTPS
       hostname: "argocd.kube.metalnet.org"
-      port: 8000
+      port: 8443
       allowedRoutes:
         namespaces:
           from: Same
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: argocd-kube-metalnet-org-tls
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
@@ -23,7 +29,7 @@ spec:
   parentRefs:
     - name: argocd-gateway
       namespace: argocd
-      sectionName: web
+      sectionName: websecure
   hostnames:
     - "argocd.kube.metalnet.org"
   rules:
@@ -46,7 +52,7 @@ spec:
   parentRefs:
     - name: argocd-gateway
       namespace: argocd
-      sectionName: web
+      sectionName: websecure
   hostnames:
     - "argocd.kube.metalnet.org"
   rules:
