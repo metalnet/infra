@@ -3,7 +3,8 @@ kind: Gateway
 metadata:
   name: traefik-gateway
   namespace: traefik
-  cert-manager.io/issuer: traefik
+  annotations:
+    cert-manager.io/issuer: traefik
 spec:
   gatewayClassName: traefik
   listeners:
