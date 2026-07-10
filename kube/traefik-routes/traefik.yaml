@@ -3,16 +3,21 @@ kind: Gateway
 metadata:
   name: traefik-gateway
   namespace: traefik
+  cert-manager.io/issuer: traefik
 spec:
   gatewayClassName: traefik
   listeners:
-    - name: web
-      protocol: HTTP
+    - name: websecure
+      protocol: HTTPS
       hostname: "traefik.kube.metalnet.org"
-      port: 8000
+      port: 8443
       allowedRoutes:
         namespaces:
           from: Same
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: traefik-kube-metalnet-org-tls
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
