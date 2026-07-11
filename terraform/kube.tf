@@ -98,7 +98,14 @@ resource "proxmox_virtual_environment_vm" "talos" {
   disk {
     datastore_id = "local-lvm"
     interface    = "scsi0"
-    size         = 32
+    size         = 100
+    discard      = "on"
+    ssd          = "true"
+  }
+  disk {
+    datastore_id = "local-lvm"
+    interface    = "scsi1"
+    size         = 100
     discard      = "on"
     ssd          = "true"
   }

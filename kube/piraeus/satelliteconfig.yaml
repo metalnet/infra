@@ -3,6 +3,12 @@ kind: LinstorSatelliteConfiguration
 metadata:
   name: talos-loader-override
 spec:
+  storagePools:
+    - name: data
+      lvmThinPool: {}
+      source:
+        hostDevices:
+          - /dev/sdb
   podTemplate:
     spec:
       initContainers:
