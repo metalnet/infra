@@ -1,0 +1,51 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: monitoring
+  namespace: argocd
+spec:
+  project: default
+  sources:
+  - repoURL: https://victoriametrics.github.io/helm-charts/
+    targetRevision: 0.86.0
+    chart: victoria-metrics-k8s-stack
+    helm:
+      releaseName: victoria-metrics-k8s-stack
+      valueFiles:
+      - $values/kube/monitoring/values.yaml
+  - repoURL: https://github.com/metalnet/infra.git
+    targetRevision: HEAD
+    ref: values
+  - repoURL: https://github.com/metalnet/infra
+    targetRevision: HEAD
+    path: kube/monitoring
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      enabled: true
+    syncOptions:
+      - CreateNamespace=true
+      - RespectIgnoreDifferences=true
+  ignoreDifferences:
+    - group: ""
+      kind: Secret
+      name: <fullname>-validation
+      namespace: <k8s-stack-namespace>
+      jsonPointers:
+        - /data
+    - group: admissionregistration.k8s.io
+      kind: ValidatingWebhookConfiguration
+      name: <fullname>-admission
+      jqPathExpressions:
+        - '.webhooks[]?.clientConfig.caBundle'
+    - kind: "Secret"
+      jsonPointers:
+        - /data/admin-password
+    - group: apps
+      kind: Deployment
+      jsonPointers:
+        - /spec/template/metadata/annotations/checksum~1secret
