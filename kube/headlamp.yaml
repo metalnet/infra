@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: headlamp
+  namespace: argocd
+spec:
+  project: default
+  sources:
+  - repoURL: https://kubernetes-sigs.github.io/headlamp
+    chart: headlamp
+    targetRevision: 0.43.0
+    helm:
+      releaseName: headlamp
+  destination:
+    server: "https://kubernetes.default.svc"
+    namespace: kube-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      enabled: true
+
