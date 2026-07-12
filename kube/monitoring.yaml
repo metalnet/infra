@@ -10,7 +10,7 @@ spec:
     targetRevision: 0.86.0
     chart: victoria-metrics-k8s-stack
     helm:
-      releaseName: victoria-metrics-k8s-stack
+      releaseName: vmks
       valueFiles:
       - $values/kube/monitoring/values.yaml
   - repoURL: https://github.com/metalnet/infra.git
