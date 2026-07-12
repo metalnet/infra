@@ -20,6 +20,20 @@ spec:
         certificateRefs:
           - name: headlamp-kube-metalnet-org-tls
 ---
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: ReferenceGrant
+metadata:
+  name: allow-traefik-routes
+  namespace: kube-system
+spec:
+  from:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      namespace: traefik
+  to:
+    - group: ""
+      kind: Service
+---
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
@@ -35,6 +49,7 @@ spec:
   rules:
     - backendRefs:
         - name: headlamp
+					namespace: kube-system
           port: 80
           kind: Service
           group: ""
