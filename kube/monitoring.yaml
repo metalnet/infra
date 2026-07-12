@@ -30,6 +30,9 @@ spec:
     syncOptions:
       - CreateNamespace=true
       - RespectIgnoreDifferences=true
+    managedNamespaceMetadata:
+      labels:
+        pod-security.kubernetes.io/enforce: privileged
   ignoreDifferences:
     - group: ""
       kind: Secret
