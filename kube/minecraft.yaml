@@ -3,6 +3,9 @@ kind: AppProject
 metadata:
   name: minecraft
   namespace: argocd
+spec:
+  sourceRepos:
+    - "*"
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
