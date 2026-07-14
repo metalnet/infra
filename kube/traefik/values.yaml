@@ -15,7 +15,3 @@ providers:
     experimentalChannel: true
 gateway:
   enabled: false
-ports:
-  metrics:
-    expose:
-      default: true
