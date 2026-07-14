@@ -18,9 +18,6 @@ spec:
     chart: linstor-cluster
     helm:
       releaseName: linstor-cluster
-      valuesObject:
-        monitoring:
-          enabled: true
   - repoURL: https://github.com/metalnet/infra.git
     targetRevision: HEAD
     ref: values
