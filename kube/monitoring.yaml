@@ -13,6 +13,11 @@ spec:
       releaseName: vmks
       valueFiles:
       - $values/kube/monitoring/values.yaml
+  - repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: 30.0.1
+    chart: prometheus-operator-crds
+    helm:
+      releaseName: prometheus-operator-crds
   - repoURL: https://github.com/metalnet/infra.git
     targetRevision: HEAD
     ref: values
