@@ -1,14 +1,9 @@
 apiVersion: operator.victoriametrics.com/v1beta1
-kind: VMServiceScrape
+kind: VMStaticScrape
 metadata:
   name: traefik-scrape-config
   namespace: monitoring
 spec:
-  endpoints:
-    - port: metrics
-      path: /metrics
-      interval: 30s
-      honorLabels: true
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: traefik
+  jobName: traefik
+  targetEndpoints:
+    - targets: ["192.168.10.70:9100"]
