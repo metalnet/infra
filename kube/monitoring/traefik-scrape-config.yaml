@@ -4,7 +4,6 @@ metadata:
   name: traefik-scrape-config
   namespace: monitoring
 spec:
-  jobLabel: traefik
   endpoints:
     - port: metrics
       path: /metrics
