@@ -15,13 +15,3 @@ providers:
     experimentalChannel: true
 gateway:
   enabled: false
-metrics:
-  influxdb2:
-    address: "http://vmsingle-vmks:8428"
-    token: "dummy_token"
-    org: "dummy_org"
-    bucket: "dummy_bucket"
-    pushInterval: 10s
-    addEntryPointsLabels: true
-    addServicesLabels: true
-
