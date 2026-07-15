@@ -3,12 +3,16 @@ kind: Application
 metadata:
   name: monitoring
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "-5"
 spec:
   project: default
   sources:
-  - repoURL: https://github.com/metalnet/infra
-    targetRevision: HEAD
-    path: kube/monitoring
+  - repoURL: https://prometheus-community.github.io/helm-charts
+    targetRevision: 30.0.1
+    chart: prometheus-operator-crds
+    helm:
+      releaseName: prometheus-operator-crds
   destination:
     server: https://kubernetes.default.svc
     namespace: monitoring
@@ -18,8 +22,8 @@ spec:
       prune: true
       enabled: true
     syncOptions:
+      - ServerSideApply=true
       - CreateNamespace=true
     managedNamespaceMetadata:
       labels:
         pod-security.kubernetes.io/enforce: privileged
-  
