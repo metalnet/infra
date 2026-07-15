@@ -34,8 +34,8 @@ spec:
     - "uptime.kube.metalnet.org"
   rules:
     - backendRefs:
-        - name: uptimekuma
-          port: 80
+        - name: uptimekuma-uptime-kuma
+          port: 3001
           kind: Service
           group: ""
       matches:
