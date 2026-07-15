@@ -15,7 +15,12 @@ providers:
     experimentalChannel: true
 gateway:
   enabled: false
-ports:
-  metrics:
-    expose:
-      default: true
+service:
+  additionalServices:
+    metrics:
+      type: ClusterIP
+      ports:
+        - name: metrics
+          port: 9100
+          targetPort: metrics
+          protocol: TCP
