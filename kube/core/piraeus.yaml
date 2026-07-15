@@ -12,7 +12,7 @@ spec:
     helm:
       releaseName: piraeus
       valueFiles:
-      - $values/kube/piraeus/values.yaml
+      - $values/kube/core/piraeus/values.yaml
   - repoURL: oci://ghcr.io/piraeusdatastore/helm-charts/linstor-cluster
     targetRevision: 1.1.1
     chart: linstor-cluster
@@ -26,7 +26,7 @@ spec:
     ref: values
   - repoURL: https://github.com/metalnet/infra
     targetRevision: HEAD
-    path: kube/piraeus
+    path: kube/core/piraeus
   destination:
     server: https://kubernetes.default.svc
     namespace: piraeus

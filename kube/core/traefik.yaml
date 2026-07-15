@@ -1,31 +1,31 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cert-manager
+  name: traefik
   namespace: argocd
 spec:
   project: default
   sources:
-  - repoURL: oci://quay.io/jetstack/charts/cert-manager
-    targetRevision: v1.21.0
-    chart: cert-manager
+  - repoURL: https://traefik.github.io/charts
+    chart: traefik
+    targetRevision: 41.0.2
     helm:
-      releaseName: cert-manager
+      releaseName: traefik
       valueFiles:
-      - $values/kube/certmanager/values.yaml
+      - $values/kube/core/traefik/values.yaml
   - repoURL: https://github.com/metalnet/infra.git
     targetRevision: HEAD
     ref: values
-  - repoURL: https://github.com/metalnet/infra
+  - repoURL: https://github.com/metalnet/infra.git
     targetRevision: HEAD
-    path: kube/certmanager
+    path: kube/core/traefik-routes
   destination:
-    server: https://kubernetes.default.svc
-    namespace: cert-manager
+    server: "https://kubernetes.default.svc"
+    namespace: traefik
   syncPolicy:
     automated:
-      selfHeal: true
       prune: true
+      selfHeal: true
       enabled: true
     syncOptions:
       - CreateNamespace=true
