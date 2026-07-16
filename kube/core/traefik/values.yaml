@@ -22,6 +22,8 @@ ports:
 service:
   additionalServices:
     metrics:
+      labels:
+        app.kubernetes.io/instance: traefik-metrics
       type: ClusterIP
       ports:
         - name: metrics
