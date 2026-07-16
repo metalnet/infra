@@ -2,13 +2,11 @@ configuration:
   backupStorageLocation:
     - name: default
       provider: aws
-      bucket: my-velero-backups
+      bucket: metalnet-kube
       config:
         s3Url: https://s3.ca-east-006.backblazeb2.com
         region: ca-east-006
         s3ForcePathStyle: true
-      objectStorage:
-        bucket: metalnet-kube
   volumeSnapshotLocation:
     - name: default
       provider: aws
@@ -16,8 +14,6 @@ configuration:
         s3Url: https://s3.ca-east-006.backblazeb2.com
         region: ca-east-006
         s3ForcePathStyle: true
-      objectStorage:
-        bucket: metalnet-kube
 credentials:
   useSecret: true
   existingSecret: velero-cloud-credentials
