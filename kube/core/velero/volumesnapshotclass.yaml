@@ -1,0 +1,8 @@
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotClass
+metadata:
+  name: linstor-csi-snapshot-class
+  labels:
+    velero.io/csi-volumesnapshot-class: "true"
+driver: linstor.csi.linbit.com
+deletionPolicy: Retain
