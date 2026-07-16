@@ -22,7 +22,7 @@ initContainers:
     volumeMounts:
       - mountPath: /target
         name: plugins
-defaultVolumesToFsBackup: true
+#defaultVolumesToFsBackup: true
 #features: EnableCSI
 snapshotsEnabled: true
 deployNodeAgent: true
