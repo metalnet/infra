@@ -4,7 +4,7 @@ metadata:
   name: backup-my-pvc
   namespace: velero
 spec:
-  defaultVolumesToFsBackup: true
+  #defaultVolumesToFsBackup: true
   includedNamespaces:
   - monitoring
   includedResources:
