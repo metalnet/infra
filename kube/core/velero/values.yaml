@@ -7,13 +7,6 @@ configuration:
         s3Url: https://s3.ca-east-006.backblazeb2.com
         region: ca-east-006
         s3ForcePathStyle: true
-  volumeSnapshotLocation:
-    - name: default
-      provider: aws
-      config:
-        s3Url: https://s3.ca-east-006.backblazeb2.com
-        region: ca-east-006
-        s3ForcePathStyle: true
 credentials:
   useSecret: true
   existingSecret: velero-cloud-credentials
