@@ -24,5 +24,8 @@ vlagent:
       enabled: true
       
 grafana:
+  persistence:
+    enabled: true
+    size: 10Gi
   plugins:
     - victoriametrics-logs-datasource
