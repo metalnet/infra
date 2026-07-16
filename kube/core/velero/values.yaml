@@ -7,6 +7,11 @@ configuration:
         s3Url: https://s3.ca-east-006.backblazeb2.com
         region: ca-east-006
         s3ForcePathStyle: true
+  volumeSnapshotLocation:
+    - name: default
+      provider: aws
+      config:
+        region: ca-east-006
 credentials:
   useSecret: true
   existingSecret: velero-cloud-credentials
@@ -17,5 +22,6 @@ initContainers:
     volumeMounts:
       - mountPath: /target
         name: plugins
-snapshotsEnabled: false
+defaultVolumesToFsBackup: true
+snapshotsEnabled: true
 deployNodeAgent: true
