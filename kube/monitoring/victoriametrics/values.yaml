@@ -10,10 +10,10 @@ victoria-metrics-operator:
     
 vmsingle:
   spec:
-    persitentVolume:
+    persistentVolume:
       extraLabels:
         velero.io/exclude-from-backup: true
-        
+
 vlsingle:
   enabled: true
   spec:
