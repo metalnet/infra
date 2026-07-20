@@ -43,7 +43,6 @@ grafana:
       readOnly: false
   extraVolumes:
   - name: grafana-plugins-volume
-    persistentVolumeClaim:
-      claimName: grafana-plugins-pvc
+    existingClaim: grafana-plugins-pvc
   plugins:
     - victoriametrics-logs-datasource
