@@ -9,18 +9,19 @@ victoria-metrics-operator:
   enable_converter_ownership: false
     
 vmsingle:
-  spec:
+  server:
     persistentVolume:
       extraLabels:
         velero.io/exclude-from-backup: true
 
 vlsingle:
   enabled: true
-  spec:
-    retentionPeriod: 30d
+  server:
     persistentVolume:
       extraLabels:
         velero.io/exclude-from-backup: true
+  spec:
+    retentionPeriod: 30d
     storage:
       resources:
         requests:
