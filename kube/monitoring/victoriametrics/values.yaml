@@ -37,5 +37,13 @@ grafana:
   persistence:
     enabled: true
     size: 10Gi
+  extraVolumeMounts:
+    - name: grafana-plugins-volume
+      mountPath: /var/lib/grafana/plugins
+      readOnly: false
+  extraVolumes:
+  - name: custom-plugins-volume
+    persistentVolumeClaim:
+      claimName: grafana-plugins-pvc
   plugins:
     - victoriametrics-logs-datasource
