@@ -8,10 +8,19 @@ victoria-metrics-operator:
     prometheus_converter_add_argocd_ignore_annotations: true
   enable_converter_ownership: false
     
+vmsingle:
+  spec:
+    persitentVolume:
+      extraLabels:
+        velero.io/exclude-from-backup: true
+        
 vlsingle:
   enabled: true
   spec:
     retentionPeriod: 30d
+    persistentVolume:
+      extraLabels:
+        velero.io/exclude-from-backup: true
     storage:
       resources:
         requests:
