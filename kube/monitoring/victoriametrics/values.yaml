@@ -42,7 +42,7 @@ grafana:
       mountPath: /var/lib/grafana/plugins
       readOnly: false
   extraVolumes:
-  - name: custom-plugins-volume
+  - name: grafana-plugins-volume
     persistentVolumeClaim:
       claimName: grafana-plugins-pvc
   plugins:
