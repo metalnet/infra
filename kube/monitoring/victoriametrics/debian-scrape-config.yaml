@@ -1,0 +1,9 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMStaticScrape
+metadata:
+  name: debian-scrape-config
+  namespace: monitoring
+spec:
+  jobName: debian-debian
+  targetEndpoints:
+    - targets: ["192.168.10.3:9100", "192.168.10.4:9100", "192.168.10.5:9100"]
