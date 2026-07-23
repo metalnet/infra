@@ -30,6 +30,7 @@ metadata:
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Infrastructure
     gethomepage.dev/name: Traefik
+    gethomepage.dev/app: traefik
 spec:
   parentRefs:
     - name: traefik-gateway

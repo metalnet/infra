@@ -25,6 +25,12 @@ kind: HTTPRoute
 metadata:
   name: argocd-http-route
   namespace: argocd
+  annotations:
+    gethomepage.dev/href: "https://argocd.kube.metalnet.org"
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Infrastructure
+    gethomepage.dev/name: ArgoCD 
+    gethomepage.dev/app: argocd-server
 spec:
   parentRefs:
     - name: argocd-gateway
