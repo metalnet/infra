@@ -42,6 +42,7 @@ metadata:
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Infrastructure
     gethomepage.dev/name: Intelligent Platform Management Interface
+    gethomepage.dev/app: ipmi-service
 spec:
   entryPoints:
     - websecure

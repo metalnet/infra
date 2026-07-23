@@ -30,7 +30,7 @@ metadata:
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Infrastructure
     gethomepage.dev/name: Grafana
-    gethomepage.dev/app: vmks-grafana
+    gethomepage.dev/app: grafana
 spec:
   parentRefs:
     - name: grafana-gateway
