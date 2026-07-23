@@ -11,7 +11,7 @@ config:
             href: https://opnsense.metalnet.org
 
 kubernetes:
-  mode: cluster
+  mode: default
   ingress: false
   traefik: true
   gateway: true
