@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name:  homepage
+  namespace: argocd
+spec:
+  project: apps
+  sources:
+  - repoURL: http://jameswynn.github.io/helm-charts
+    targetRevision: homepage-2.1.0
+    chart: homepage
+    helm:
+      releaseName: homepage
+      valueFiles:
+      - $values/kube/apps/homepage/values.yaml
+  - repoURL: https://github.com/metalnet/infra.git
+    targetRevision: HEAD
+    ref: values
+  - repoURL: https://github.com/metalnet/infra
+    targetRevision: HEAD
+    path: kube/apps/homepage
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: homepage
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      enabled: true
+

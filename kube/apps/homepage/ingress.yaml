@@ -1,0 +1,44 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: homepage-gateway
+  namespace: homepage
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare-acme-issuer
+spec:
+  gatewayClassName: traefik
+  listeners:
+    - name: websecure
+      protocol: HTTPS
+      hostname: "homepage.kube.metalnet.org"
+      port: 8443
+      allowedRoutes:
+        namespaces:
+          from: Same
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: homepage-kube-metalnet-org-tls
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: homepage-http-route
+  namespace: homepage
+spec:
+  parentRefs:
+    - name: homepage-gateway
+      namespace: homepage
+      sectionName: websecure
+  hostnames:
+    - "homepage.kube.metalnet.org"
+  rules:
+    - backendRefs:
+        - name: homepage-homepage
+          port: 3000
+          kind: Service
+          group: ""
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
