@@ -1,8 +1,20 @@
+enableRbac: true
+serviceAccount:
+  create: true
+
 config:
   bookmarks: {}
   widgets: {}
   services:
-    - Group 1
+    - Infrastructure:                                                                     
+        - OPNSense:                 
+          href: https://opnsense.metalnet.org
+
+kubernetes:
+  mode: cluster
+  ingress: false
+  traefik: true
+  gateway: true
 
 env:
   - name: HOMEPAGE_ALLOWED_HOSTS
