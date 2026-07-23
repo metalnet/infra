@@ -34,7 +34,7 @@ spec:
     - "homepage.kube.metalnet.org"
   rules:
     - backendRefs:
-        - name: homepage-homepage
+        - name: homepage
           port: 3000
           kind: Service
           group: ""
