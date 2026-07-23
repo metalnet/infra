@@ -37,6 +37,11 @@ kind: IngressRoute
 metadata:
   name: ipmi-route
   namespace: traefik
+  annotations:
+    gethomepage.dev/href: "https://ipmi.kube.metalnet.org"
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Infrastructure
+    gethomepage.dev/name: Intelligent Platform Management Interface
 spec:
   entryPoints:
     - websecure

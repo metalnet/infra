@@ -25,6 +25,11 @@ kind: HTTPRoute
 metadata:
   name: traefik-http-route
   namespace: traefik
+  annotations:
+    gethomepage.dev/href: "https://traefik.kube.metalnet.org"
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Infrastructure
+    gethomepage.dev/name: Traefik
 spec:
   parentRefs:
     - name: traefik-gateway
