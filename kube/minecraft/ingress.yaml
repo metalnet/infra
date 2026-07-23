@@ -1,7 +1,7 @@
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
-  name: minecraft-gateway
+  name: minecraft-tcp-gateway
   namespace: minecraft
 spec:
   gatewayClassName: traefik
@@ -12,6 +12,15 @@ spec:
       allowedRoutes:
         namespaces:
           from: Same
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: minecraft-udp-gateway
+  namespace: minecraft
+spec:
+  gatewayClassName: traefik
+  listeners:
     - name: minecraft-udp
       protocol: UDP
       port: 25565
@@ -26,7 +35,7 @@ metadata:
   namespace: minecraft
 spec:
   parentRefs:
-    - name: minecraft-gateway
+    - name: minecraft-tcp-gateway
       namespace: minecraft
       sectionName: minecraft-tcp
   rules:
@@ -48,7 +57,7 @@ metadata:
   namespace: minecraft
 spec:
   parentRefs:
-    - name: minecraft-gateway
+    - name: minecraft-udp-gateway
       namespace: minecraft
       sectionName: minecraft-udp
   rules:
