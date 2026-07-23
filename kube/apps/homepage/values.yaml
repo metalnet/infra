@@ -8,7 +8,7 @@ config:
   services:
     - Infrastructure:                                                                     
         - OPNSense:                 
-          href: https://opnsense.metalnet.org
+            href: https://opnsense.metalnet.org
 
 kubernetes:
   mode: cluster
