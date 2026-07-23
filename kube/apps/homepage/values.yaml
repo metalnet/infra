@@ -10,11 +10,11 @@ config:
         - OPNSense:                 
             href: https://opnsense.metalnet.org
 
-kubernetes:
-  mode: default
-  ingress: false
-  traefik: true
-  gateway: true
+  kubernetes:
+    mode: cluster
+    ingress: false
+    traefik: true
+    gateway: true
 
 env:
   - name: HOMEPAGE_ALLOWED_HOSTS
