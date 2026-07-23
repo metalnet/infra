@@ -1,0 +1,11 @@
+- name: Base Configuration
+  hosts: hosts
+  tasks:
+    - name: Install prometheus node exporter
+      ansible.builtin.package:
+        name: prometheus-node-exporter
+        state: present
+    - name: Install prometheus node exporter extra scripts
+      ansible.builtin.package:
+        name: prometheus-node-exporter-collectors
+        state: present
