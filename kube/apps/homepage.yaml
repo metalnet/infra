@@ -7,7 +7,7 @@ spec:
   project: apps
   sources:
   - repoURL: http://jameswynn.github.io/helm-charts
-    targetRevision: homepage-2.1.0
+    targetRevision: 2.1.0
     chart: homepage
     helm:
       releaseName: homepage
