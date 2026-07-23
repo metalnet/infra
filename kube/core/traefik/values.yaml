@@ -19,6 +19,24 @@ ports:
   metrics:
     expose:
       metrics: true
+  kms:
+    port: 1688
+    exposedPort: 1688
+    protocol: TCP
+    expose:
+      kms: true
+  minecraft-tcp:
+    port: 25565
+    exposedPort: 25565
+    protocol: TCP
+    expose:
+      minecraft-tcp: true
+  minecraft-udp:
+    port: 25565
+    exposedPort: 25565
+    protocol: UDP
+    expose:
+      minecraft-udp: true
 service:
   additionalServices:
     metrics:
