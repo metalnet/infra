@@ -2,7 +2,6 @@ systemIp: unifi.metalnet.org
 
 service:
   type: LoadBalancer
-  loadBalancerIP: 192.168.10.71
   annotations:
     metallb.io/loadBalancerIPs: 192.168.10.71
     metallb.io/allow-shared-ip: unifi 
