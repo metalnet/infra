@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: unifi
+  namespace: argocd
+spec:
+  project: apps
+  sources:
+  - repoURL: https://chrissnell.github.io/unifi-os-kubernetes
+    targetRevision: 0.2.5 
+    chart: unifi-os-server
+    helm:
+      releaseName: unifi
+      valueFiles:
+      - $values/kube/apps/unifi/values.yaml
+  - repoURL: https://github.com/metalnet/infra.git
+    targetRevision: HEAD
+    ref: values
+  - repoURL: https://github.com/metalnet/infra
+    targetRevision: HEAD
+    path: kube/apps/unifi
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: unifi
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      enabled: true
+    syncOptions:
+      - CreateNamespace=true
+
