@@ -4,4 +4,4 @@ persistence:
 configuration:
   enable: true
   trusted_proxies:
-    - 10.244.0.152/32
+    - 10.244.0.0/24
