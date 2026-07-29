@@ -35,7 +35,7 @@ spec:
   rules:
     - backendRefs:
         - name: hass-home-assistant
-          port: 8123
+          port: 8080
           kind: Service
           group: ""
       matches:
