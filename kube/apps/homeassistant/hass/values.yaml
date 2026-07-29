@@ -5,4 +5,4 @@ ingress:
   external: true
 
 configuration:
-  enable: true
+  enabled: true
