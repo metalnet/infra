@@ -1,7 +1,8 @@
 persistence:
   enabled: true
 
+ingress:
+  external: true
+
 configuration:
   enable: true
-  trusted_proxies:
-    - 10.244.0.0/24
