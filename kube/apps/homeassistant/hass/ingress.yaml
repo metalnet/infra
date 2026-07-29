@@ -34,7 +34,7 @@ spec:
     - "hass.kube.metalnet.org"
   rules:
     - backendRefs:
-        - name: hass
+        - name: hass-home-assistant
           port: 8123
           kind: Service
           group: ""
