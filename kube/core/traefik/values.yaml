@@ -37,7 +37,21 @@ ports:
     protocol: UDP
     expose:
       minecraft-udp: true
+  mqtt:
+    port: 1883
+    exposedPort: 1883
+    protocol: TCP
+    expose:
+      mqtt: true
+  mqtts:
+    port: 8883
+    exposedPort: 8883
+    protocol: TCP
+    expose:
+      mqtts: true
 service:
+  annotations:
+    metallb.io/loadBalancerIPs: 192.168.10.70
   additionalServices:
     metrics:
       labels:
