@@ -34,6 +34,7 @@ vlagent:
       enabled: true
       
 grafana:
+  useStatefulSet: true
   persistence:
     enabled: true
     size: 10Gi
