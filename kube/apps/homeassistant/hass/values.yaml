@@ -3,3 +3,5 @@ persistence:
 
 configuration:
   enable: true
+  trusted_proxies:
+    - 10.0.0.0/8
