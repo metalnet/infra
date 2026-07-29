@@ -6,5 +6,6 @@ ingress:
 
 configuration:
   enabled: true
+  forceInit: true
   trusted_proxies:
     - 10.244.0.152
