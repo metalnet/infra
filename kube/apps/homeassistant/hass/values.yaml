@@ -7,4 +7,4 @@ ingress:
 configuration:
   enabled: true
   trusted_proxies:
-    - 10.244.0.0/24
+    - 10.244.0.152
