@@ -37,6 +37,7 @@ grafana:
   useStatefulSet: true
   persistence:
     enabled: true
+    volumeName: pvc-983c4a66-c6d4-4c24-aeb3-1f2c31b3432e
     size: 10Gi
   extraVolumeMounts:
     - name: grafana-plugins-volume
