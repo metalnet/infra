@@ -46,3 +46,8 @@ grafana:
     existingClaim: grafana-plugins-pvc
   plugins:
     - victoriametrics-logs-datasource
+  grafana.ini:
+    domain: grafana.kube.metalnet.org
+    http_port: 443
+    protocol: https
+    root_url: https://grafana.kube.metalnet.org/
