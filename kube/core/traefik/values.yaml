@@ -3,6 +3,7 @@ deployment:
 updateStrategy:
   rollingUpdate:
     maxUnavailable: 1
+    maxSurge: ""
 ingressClass:
   enabled: false
 experimental:
