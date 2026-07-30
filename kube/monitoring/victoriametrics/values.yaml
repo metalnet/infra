@@ -54,5 +54,4 @@ grafana:
 
 alertmanager:
   spec:
-    configSecret:
-      name: alertmanager-discord-config
+    configSecret: alertmanager-discord-config
