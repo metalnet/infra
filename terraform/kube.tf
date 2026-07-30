@@ -206,7 +206,21 @@ data "talos_machine_configuration" "control_machine_config" {
           ]
         }
       }
-    })
+    }),
+    yamlencode({
+      cluster = {
+        controllerManager = {
+          extraArgs = {
+            bind-address = "0.0.0.0"
+          }
+        }
+        scheduler = {
+          extraArgs = {
+            bind-address = "0.0.0.0"
+          }
+        }
+      }
+    }),
   ]
 }
 
