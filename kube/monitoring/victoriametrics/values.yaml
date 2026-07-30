@@ -51,3 +51,8 @@ grafana:
   grafana.ini:
     server:
       root_url: https://grafana.kube.metalnet.org/
+
+alertmanager:
+  spec:
+    configSecret:
+      name: alertmanager-discord-config
