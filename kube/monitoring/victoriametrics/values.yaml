@@ -84,3 +84,9 @@ kubeScheduler:
           tlsConfig:
             caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
             insecureSkipVerify: true
+
+kubeEtcd:
+  endpoints:
+    - 192.168.10.50
+    - 192.168.10.51
+    - 192.168.10.52
