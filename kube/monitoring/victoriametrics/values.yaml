@@ -55,3 +55,19 @@ grafana:
 alertmanager:
   spec:
     configSecret: alertmanager-discord-config
+
+kubeControllerManager:
+  vmScrape:
+    spec:
+      endpoints:
+        - port: http-metrics
+          tlsConfig:
+            insecureSkipVerify: true
+
+kubeScheduler:
+  vmScrape:
+    spec:
+      endpoints:
+        - port: http-metrics
+          tlsConfig:
+            insecureSkipVerify: true
