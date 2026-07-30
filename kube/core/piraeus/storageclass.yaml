@@ -5,6 +5,7 @@ metadata:
   annotations:
     storageclass.kubernetes.io/is-default-class: "false"
 provisioner: linstor.csi.linbit.com
+reclaimPolicy: Retain
 parameters:
   linstor.csi.linbit.com/storagePool: "data"
   linstor.csi.linbit.com/layerList: "storage"
@@ -19,6 +20,7 @@ metadata:
   annotations:
     storageclass.kubernetes.io/is-default-class: "true"
 provisioner: linstor.csi.linbit.com
+reclaimPolicy: Retain
 parameters:
   linstor.csi.linbit.com/storagePool: "data"
   linstor.csi.linbit.com/autoPlace: "3"
