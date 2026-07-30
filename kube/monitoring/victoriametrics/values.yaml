@@ -59,15 +59,28 @@ alertmanager:
 kubeControllerManager:
   vmScrape:
     spec:
+      jobLabel: app.kubernetes.io/component
+      namespaceSelector:
+        matchNames: []
       endpoints:
-        - port: http-metrics
+        - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+          port: http-metrics
+          scheme: https
           tlsConfig:
+            caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+            serverName: kubernetes
             insecureSkipVerify: true
 
 kubeScheduler:
   vmScrape:
     spec:
+      jobLabel: app.kubernetes.io/component
+      namespaceSelector:
+        matchNames: []
       endpoints:
-        - port: http-metrics
+        - bearerTokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
+          port: http-metrics
+          scheme: https
           tlsConfig:
+            caFile: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
             insecureSkipVerify: true
