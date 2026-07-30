@@ -1,0 +1,9 @@
+apiVersion: operator.victoriametrics.com/v1beta1
+kind: VMAlertmanager
+metadata:
+  name: alertmanager
+  namespace: monitoring
+spec:
+  enabled: true
+  configSecret:
+    name: alertmanager-discord-config
