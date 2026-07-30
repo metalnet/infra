@@ -1,0 +1,19 @@
+{
+  "kind": "SealedSecret",
+  "apiVersion": "bitnami.com/v1alpha1",
+  "metadata": {
+    "name": "alertmanager-discord-config",
+    "namespace": "monitoring"
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "name": "alertmanager-discord-config",
+        "namespace": "monitoring"
+      }
+    },
+    "encryptedData": {
+      "alertmanager.yaml": "AgCcSuT98ei2Vqy3PzmbBQvyI4pYLd6L1hqR9uWGaitKqRdmL7HMmGAKa1wtE59RqIvNuSqDcwWgQcfWK+K8mpbFKGMhO6dmXl1KoaGSHLVS8CUwclBcv8gWQQ0FKLkhscfZrd696TZZcAbJJJoWn8QJTEVqfxaVhp9jA+sbqGLyo+QMRbcoYjhxlJcuP0rvE/DNw8GTLsK7otdHbPnFvLkDf/Ei/zX1C/nXUAlQXoOpseXCaid6/fTntfLEgjKY0oJxD0/W0X+PC8mxLNpu3IrOWnb7IUijbR6nKxyKf4kyfGJCPML4JlvcoviIHflbNlmUwka/r+ybMvGccx6p5YBi/ltaXGKiCxYnUlZ1/87a+VejGAsqZNTCiJ4TG5zdiCgoAvSFbFKtLK4w2FSL1TC5YnsaQPSqALVvIsbB5GO31ZHwIgh7+DCgK9ZCM/x8/0ZG/ZmPi90jXzQLNLiOg+00ZATZulPuAVirFO6WXpTAbhQ1bXkXbOV97LOjQLhjvq5Zelj179eTKZhNin44Oe8UTZnue3hiQEhY7qHzDterpMmk7pEBj1U70yYlzE2JbNmJZ7wiuhfS9L0HfSJpAlfBjADRdLfAfMxHTbWRCAwD0Z72YfgYRTy8rWwO6MoS75Ec26Jfq4Dh83ji6tlUFby7JXitElaA/qfVH8LQmahjQ1dqC3a2mVT0ZlzQCwjtwP028Wx6WLJay0if/BWv1B/xqpC32SPOePObfygG1w7y5jrjp41Lks2LY82c3dQAi8dMbj29Lfe1VnFJ2wMEhei5CtToAECGlndEh3JWcoYBnhJNd3cBQs3+M2JhUG0Yfev1hpj/u/xh84j9nK6BWWMPHV6n5bzIB+U4nafF91F8/E7Yo3NVcMEuVonBOJK3J1wuSIebHAGtllhcJGB2zRwvGf/cBnVzJpyzPFD3wpP6xlNdn3d/Oq6s9meQiNDryHnIc3BrLHBbUKZlVilTGDagTxOYDAI/LvLQ2Yb7VQRFGzyZp6DxeTa7Ebt1op4fb6r5odKBQRWYPCSQJPFs6rejzoJcNaAdJBlV4/qgVh7wXroW8eJ+CHeNJmkdhxn4pu4IGG5vUBFAa0OiOhaUPoxk+rqUB9xeS0rEJQeokWSCqvK8NrI2jQwlAc+ghtlpz8POSLZTFscv5b6KXqT0uU68W3NpHX2vBDFByYbT6OiC264VTfyBCUT42gNUS2FeY6+4VG9p2NXEqrJImT62J3FGx6iEAyNsjn2DppBCzgf+6uB0YhJgMNF6mwPFW1pUZ8rQt1prh1mlkVHTRKzOvKxKPvPUoGo="
+    }
+  }
+}
