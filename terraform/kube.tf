@@ -209,6 +209,11 @@ data "talos_machine_configuration" "control_machine_config" {
     }),
     yamlencode({
       cluster = {
+        etcd = {
+          extraArgs = {
+            listen-metrics-urls = "http://0.0.0.0:2379"
+          }
+        }
         controllerManager = {
           extraArgs = {
             bind-address = "0.0.0.0"

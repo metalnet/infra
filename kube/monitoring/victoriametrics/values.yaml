@@ -91,4 +91,6 @@ kubeScheduler:
             insecureSkipVerify: true
 
 kubeEtcd:
-  enabled: false
+  service:
+    selector:
+      k8s-app: kube-controller-manager 
