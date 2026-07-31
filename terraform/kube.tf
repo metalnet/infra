@@ -211,7 +211,7 @@ data "talos_machine_configuration" "control_machine_config" {
       cluster = {
         etcd = {
           extraArgs = {
-            listen-metrics-urls = "http://0.0.0.0:2379"
+            listen-metrics-urls = "http://0.0.0.0:2381"
           }
         }
         controllerManager = {
