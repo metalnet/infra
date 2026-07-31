@@ -91,13 +91,4 @@ kubeScheduler:
             insecureSkipVerify: true
 
 kubeEtcd:
-  service:
-    port: 2381
-    targetPort: 2381
-    selector:
-      k8s-app: kube-controller-manager 
-  vmScrape:
-    spec:
-      endpoints:
-        - port: http-metrics
-          scheme: http
+  enabled: false
