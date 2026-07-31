@@ -20,6 +20,9 @@ spec:
       releaseName: uptime-kuma-reconciler
       valuesObject: 
         kumaUrl: https://uptime.kube.metalnet.org
+        crednetials:
+          username: admin
+          password: password1
         resources:
           requests:
             cpu: 100m
