@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/kubernetes-sigs/gateway-api
-    targetRevision: v1.6.0
+    targetRevision: v1.6.1
     path: config/crd/experimental
   destination:
     server: https://kubernetes.default.svc
