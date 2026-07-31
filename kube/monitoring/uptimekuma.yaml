@@ -13,14 +13,13 @@ spec:
       releaseName: uptimekuma
       valueFiles:
       - $values/kube/monitoring/uptimekuma/values.yaml
-  - repoURL: https://github.com/moellere/uptime-kuma-reconciler
-    targetRevision: HEAD
+  - repoURL: https://github.com/moellere/uptime-kuma-reconciler/main
+    targetRevision: 0.1.0
     chart: charts/uptime-kuma-reconciler
     helm:
       releaseName: uptime-kuma-reconciler
       valuesObject: 
         kumaUrl: https://uptime.kube.metalnet.org
-        credentials: {}
   - repoURL: https://github.com/metalnet/infra.git
     targetRevision: HEAD
     ref: values
