@@ -3,6 +3,11 @@ defaultDashboards:
   annotations:
     argocd.argoproj.io/sync-options: ServerSideApply=true
     
+defaultRules:
+  sources:
+    vmalert:
+      enabled: false
+    
 victoria-metrics-operator:
   operator:
     prometheus_converter_add_argocd_ignore_annotations: true
