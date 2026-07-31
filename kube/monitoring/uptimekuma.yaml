@@ -14,8 +14,8 @@ spec:
       valueFiles:
       - $values/kube/monitoring/uptimekuma/values.yaml
   - repoURL: https://github.com/moellere/uptime-kuma-reconciler/main
-    targetRevision: 0.1.0
-    chart: charts/uptime-kuma-reconciler
+    targetRevision: HEAD
+    path: charts/uptime-kuma-reconciler
     helm:
       releaseName: uptime-kuma-reconciler
       valuesObject: 
