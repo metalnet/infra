@@ -18,6 +18,17 @@ vmsingle:
     persistentVolume:
       extraLabels:
         velero.io/exclude-from-backup: true
+        
+vmagent:
+  spec:
+    extraEnvs:
+      - name: GOGC
+        value: "100"
+
+vmalert:
+  spec:
+    extraArgs:
+      external.alert.source: 'explore?left={"datasource":"VictoriaMetrics","queries":[{"expr":{{`"{{ .Expr|jsonEscape|queryEscape }}"`}},"refId":"A"}],"range":{"from":{{`"{{ .ActiveAt.UnixMilli }}"`}},"to":"now"}}'
 
 vlsingle:
   enabled: true
