@@ -28,7 +28,7 @@ vmagent:
 vmalert:
   spec:
     extraArgs:
-      external.alert.source: 'explore?left={"datasource":"VictoriaMetrics","queries":[{"expr":{{`"{{ .Expr|jsonEscape|queryEscape }}"`}},"refId":"A"}],"range":{"from":{{`"{{ .ActiveAt.UnixMilli }}"`}},"to":"now"}}'
+      external.alert.source: '/explore?left={"datasource":"VictoriaMetrics","queries":[{"expr":{{`"{{ .Expr|jsonEscape|queryEscape }}"`}},"refId":"A"}],"range":{"from":{{`"{{ .ActiveAt.UnixMilli }}"`}},"to":"now"}}'
 
 vlsingle:
   enabled: true
