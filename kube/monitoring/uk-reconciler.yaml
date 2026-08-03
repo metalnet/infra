@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: uptime-kuma-reconciler
+  namespace: argocd
+spec:
+  project: default
+  sources:
+  - repoURL: https://github.com/mshogren/uptime-kuma-reconciler
+    targetRevision: HEAD
+    path: charts/uptime-kuma-reconciler
+    helm:
+      releaseName: uptime-kuma-reconciler
+      valueFiles:
+      - $values/kube/monitoring/uk-reconciler/values.yaml
+  - repoURL: https://github.com/metalnet/infra.git
+    targetRevision: HEAD
+    ref: values
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      enabled: true
+
