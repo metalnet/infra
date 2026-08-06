@@ -40,12 +40,23 @@ spec:
   hostnames:
     - "piraeus.kube.metalnet.org"
   rules:
-    - backendRefs:
+    - matches:
+        - path:
+            type: Exact
+            value: /
+      filters:
+        - type: RequestRedirect
+          requestRedirect:
+            path:
+              type: ReplaceFullPath
+              replaceFullPath: /ui/
+            statusCode: 302
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
         - name: linstor-controller
           port: 3370
           kind: Service
           group: ""
-      matches:
-        - path:
-            type: PathPrefix
-            value: /
