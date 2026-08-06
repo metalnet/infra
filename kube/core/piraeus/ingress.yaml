@@ -43,7 +43,7 @@ metadata:
   annotations:
     gethomepage.dev/href: "https://piraeus.kube.metalnet.org"
     gethomepage.dev/enabled: "true"
-    gethomepage.dev/group: Applications
+    gethomepage.dev/group: Infrastructure
     gethomepage.dev/name: Piraeus
     gethomepage.dev/app: piraeus-datastore
     uptime-kuma.io/monitor: "true"
