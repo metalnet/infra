@@ -40,15 +40,26 @@ spec:
   hostnames:
     - "traefik.kube.metalnet.org"
   rules:
-    - backendRefs:
-        - name: api@internal
-          port: 8080
-          kind: TraefikService
-          group: traefik.io
-      matches:
+    - matches:
+        - path:
+            type: Exact
+            value: /
+      filters:
+        - type: RequestRedirect
+          requestRedirect:
+            path:
+              type: ReplaceFullPath
+              value: /dashboard/
+            statusCode: 302
+    - matches:
         - path:
             type: PathPrefix
             value: /api/
         - path:
             type: PathPrefix
             value: /dashboard/
+      backendRefs:
+        - name: api@internal
+          port: 8080
+          kind: TraefikService
+          group: traefik.io
