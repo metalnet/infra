@@ -31,6 +31,7 @@ metadata:
     gethomepage.dev/group: Infrastructure
     gethomepage.dev/name: Grafana
     gethomepage.dev/app: grafana
+    uptime-kuma.io/monitor: "true"
 spec:
   parentRefs:
     - name: grafana-gateway

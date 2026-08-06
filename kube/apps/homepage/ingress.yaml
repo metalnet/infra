@@ -25,6 +25,8 @@ kind: HTTPRoute
 metadata:
   name: homepage-http-route
   namespace: homepage
+  annotations:
+    uptime-kuma.io/monitor: "true"
 spec:
   parentRefs:
     - name: homepage-gateway

@@ -1,1 +1,3 @@
 kumaUrl: https://uptime.kube.metalnet.org
+credentials:
+  existingSecret: uptimekuma-reconciler-credentials
