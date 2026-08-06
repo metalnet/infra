@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: linstor-gui-svc
+  namespace: piraeus
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/component: linstor-controller
+  ports:
+    - name: http
+      protocol: TCP
+      port: 3370
+      targetPort: 3370
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: piraeus-gateway
+  namespace: piraeus
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare-acme-issuer
+spec:
+  gatewayClassName: traefik
+  listeners:
+    - name: websecure
+      protocol: HTTPS
+      hostname: "piraeus.kube.metalnet.org"
+      port: 8443
+      allowedRoutes:
+        namespaces:
+          from: Same
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: piraeus-kube-metalnet-org-tls
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: piraeus-http-route
+  namespace: piraeus
+  annotations:
+    gethomepage.dev/href: "https://piraeus.kube.metalnet.org"
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Applications
+    gethomepage.dev/name: Piraeus
+    gethomepage.dev/app: piraeus-datastore
+    uptime-kuma.io/monitor: "true"
+spec:
+  parentRefs:
+    - name: piraeus-gateway
+      namespace: piraeus
+      sectionName: websecure
+  hostnames:
+    - "piraeus.kube.metalnet.org"
+  rules:
+    - backendRefs:
+        - name: linstor-gui-svc
+          port: 3370
+          kind: Service
+          group: ""
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
