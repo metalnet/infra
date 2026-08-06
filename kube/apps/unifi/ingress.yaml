@@ -12,7 +12,7 @@ metadata:
   name: unifi-webui-service
   namespace: unifi
   annotations:
-    traefik.ingress.kubernetes.io/service.serverstransport: unifi-tls-transport@kubernetescrd
+    traefik.ingress.kubernetes.io/service.serverstransport: unifi-unifi-tls-transport@kubernetescrd
 spec:
   type: ClusterIP
   ports:
