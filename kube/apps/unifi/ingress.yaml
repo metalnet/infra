@@ -4,69 +4,54 @@ metadata:
   name: unifi-tls-transport
   namespace: unifi 
 spec:
+  serverName: unifi.metalnet.org
   insecureSkipVerify: true
 ---
-apiVersion: traefik.io/v1alpha1
-kind: TraefikService
+apiVersion: v1
+kind: Service
 metadata:
   name: unifi-webui-service
   namespace: unifi
 spec:
-  weighted:
-    services:
-      - name: unifi-unifi-os-server-webui
-        port: 443
-        weight: 1
-        serversTransport: unifi-tls-transport
+  type: ExternalName
+  externalName: unifi.metalnet.org
+  ports:
+    - name: https
+      port: 443
 ---
-apiVersion: gateway.networking.k8s.io/v1
-kind: Gateway
+apiVersion: cert-manager.io/v1
+kind: Certificate
 metadata:
-  name: unifi-gateway
+  name: unifi-tls-cert
   namespace: unifi
-  annotations:
-    cert-manager.io/cluster-issuer: cloudflare-acme-issuer
 spec:
-  gatewayClassName: traefik
-  listeners:
-    - name: websecure
-      protocol: HTTPS
-      hostname: "unifi.kube.metalnet.org"
-      port: 8443
-      allowedRoutes:
-        namespaces:
-          from: Same
-      tls:
-        mode: Terminate
-        certificateRefs:
-          - name: unifi-kube-metalnet-org-tls
+  secretName: unifi-kube-metalnet-org-tls
+  issuerRef:
+    name: cloudflare-acme-issuer
+    kind: ClusterIssuer
+  dnsNames:
+    - unifi.kube.metalnet.org
 ---
-apiVersion: gateway.networking.k8s.io/v1
-kind: HTTPRoute
+apiVersion: traefik.io/v1alpha1
+kind: IngressRoute
 metadata:
-  name: unifi-http-route
+  name: unifi-route
   namespace: unifi
   annotations:
     gethomepage.dev/href: "https://unifi.kube.metalnet.org"
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Infrastructure
     gethomepage.dev/name: UniFi Network Application
-    gethomepage.dev/app: unifi-os-server
-    uptime-kuma.io/monitor: "true"
+    gethomepage.dev/external: "true"
 spec:
-  parentRefs:
-    - name: unifi-gateway
-      namespace: unifi
-      sectionName: websecure
-  hostnames:
-    - "unifi.kube.metalnet.org"
-  rules:
-    - matches:
-        - path:
-            type: PathPrefix
-            value: /
-      backendRefs:
+  entryPoints:
+    - websecure
+  routes:
+    - match: Host(`unifi.kube.metalnet.org`)
+      kind: Rule
+      services:
         - name: unifi-webui-service
           port: 443
-          kind: Service
-          group: ""
+          serversTransport: unifi-tls-transport
+  tls:
+    secretName: unifi-kube-metalnet-org-tls
