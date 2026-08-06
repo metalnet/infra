@@ -1,18 +1,3 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: linstor-gui-svc
-  namespace: piraeus
-spec:
-  type: ClusterIP
-  selector:
-    app.kubernetes.io/component: linstor-controller
-  ports:
-    - name: http
-      protocol: TCP
-      port: 3370
-      targetPort: 3370
----
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
@@ -56,7 +41,7 @@ spec:
     - "piraeus.kube.metalnet.org"
   rules:
     - backendRefs:
-        - name: linstor-gui-svc
+        - name: linstor-controller
           port: 3370
           kind: Service
           group: ""
