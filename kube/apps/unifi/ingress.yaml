@@ -42,7 +42,8 @@ metadata:
     gethomepage.dev/enabled: "true"
     gethomepage.dev/group: Infrastructure
     gethomepage.dev/name: UniFi Network Application
-    gethomepage.dev/external: "true"
+    gethomepage.dev/app: unifi-os-server
+    uptime-kuma.io/monitor: "true"
 spec:
   entryPoints:
     - websecure
