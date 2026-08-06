@@ -7,6 +7,7 @@ spec:
   project: default
   sources:
   - repoURL: oci://ghcr.io/piraeusdatastore/piraeus-operator/piraeus
+    path: .
     targetRevision: 2.11.0
     chart: piraeus
     helm:
@@ -14,6 +15,7 @@ spec:
       valueFiles:
       - $values/kube/core/piraeus/values.yaml
   - repoURL: oci://ghcr.io/piraeusdatastore/helm-charts/linstor-cluster
+    path: .
     targetRevision: 1.1.1
     chart: linstor-cluster
     helm:
