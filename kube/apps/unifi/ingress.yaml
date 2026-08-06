@@ -4,7 +4,6 @@ metadata:
   name: unifi-tls-transport
   namespace: unifi 
 spec:
-  serverName: unifi.metalnet.org
   insecureSkipVerify: true
 ---
 apiVersion: v1
