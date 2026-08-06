@@ -1,0 +1,78 @@
+apiVersion: traefik.io/v1alpha1
+kind: ServersTransport
+metadata:
+  name: unifi-tls-transport
+  namespace: unifi 
+spec:
+  serverName: unifi.metalnet.org
+  insecureSkipVerify: true
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: unifi-webui-service
+  namespace: unifi
+  annotations:
+    traefik.ingress.kubernetes.io/service.serverstransport: unifi-tls-transport@kubernetescrd
+spec:
+  type: ClusterIP
+  ports:
+    - name: https
+      port: 443
+      targetPort: 443
+  selector:
+    app.kubernetes.io/name: unifi-os-server
+    app.kubernetes.io/instance: unifi
+    app.kubernetes.io/component: server
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: unifi-gateway
+  namespace: unifi
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare-acme-issuer
+spec:
+  gatewayClassName: traefik
+  listeners:
+    - name: websecure
+      protocol: HTTPS
+      hostname: "unifi.kube.metalnet.org"
+      port: 8443
+      allowedRoutes:
+        namespaces:
+          from: Same
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: unifi-kube-metalnet-org-tls
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: unifi-http-route
+  namespace: unifi
+  annotations:
+    gethomepage.dev/href: "https://unifi.kube.metalnet.org"
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: Infrastructure
+    gethomepage.dev/name: UniFi Network Application
+    gethomepage.dev/app: unifi-os-server
+    uptime-kuma.io/monitor: "true"
+spec:
+  parentRefs:
+    - name: unifi-gateway
+      namespace: unifi
+      sectionName: websecure
+  hostnames:
+    - "unifi.kube.metalnet.org"
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      backendRefs:
+        - name: unifi-unifi-os-server-webui
+          port: 443
+          kind: Service
+          group: ""
