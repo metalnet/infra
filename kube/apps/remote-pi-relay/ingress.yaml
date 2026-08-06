@@ -1,0 +1,44 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: remote-pi-relay-gateway
+  namespace: remote-pi-relay
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare-acme-issuer
+spec:
+  gatewayClassName: traefik
+  listeners:
+    - name: websecure
+      protocol: HTTPS
+      hostname: "pi.kube.metalnet.org"
+      port: 8443
+      allowedRoutes:
+        namespaces:
+          from: Same
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: pi-kube-metalnet-org-tls
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: remote-pi-relay-http-route
+  namespace: remote-pi-relay
+spec:
+  parentRefs:
+    - name: remote-pi-relay-gateway
+      namespace: remote-pi-relay
+      sectionName: websecure
+  hostnames:
+    - "pi.kube.metalnet.org"
+  rules:
+    - backendRefs:
+        - name: remote-pi-relay
+          port: 3000
+          kind: Service
+          group: ""
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
