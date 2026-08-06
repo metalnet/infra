@@ -2,7 +2,7 @@ apiVersion: traefik.io/v1alpha1
 kind: ServersTransport
 metadata:
   name: unifi-tls-transport
-  namespace: unifi 
+  namespace: traefik
 spec:
   serverName: unifi.metalnet.org
   insecureSkipVerify: true
@@ -11,7 +11,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: unifi-webui-service
-  namespace: unifi
+  namespace: traefik
 spec:
   type: ExternalName
   externalName: unifi.metalnet.org
@@ -23,7 +23,7 @@ apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
   name: unifi-tls-cert
-  namespace: unifi
+  namespace: traefik
 spec:
   secretName: unifi-kube-metalnet-org-tls
   issuerRef:
@@ -36,7 +36,7 @@ apiVersion: traefik.io/v1alpha1
 kind: IngressRoute
 metadata:
   name: unifi-route
-  namespace: unifi
+  namespace: traefik
   annotations:
     gethomepage.dev/href: "https://unifi.kube.metalnet.org"
     gethomepage.dev/enabled: "true"
