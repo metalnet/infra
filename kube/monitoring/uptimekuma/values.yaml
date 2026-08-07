@@ -1,2 +1,5 @@
 serviceMonitor:
   enabled: true
+  basicAuth:
+    username: "metrics"
+    password: "uk2_wH46Xs4UHQ67DKCmfXTMlLkmfKX30Drmf1O8hyYF"
