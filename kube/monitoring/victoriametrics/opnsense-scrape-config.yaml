@@ -1,9 +1,0 @@
-apiVersion: operator.victoriametrics.com/v1beta1
-kind: VMStaticScrape
-metadata:
-  name: opnsense-scrape-config
-  namespace: monitoring
-spec:
-  jobName: opnsense-opnsense
-  targetEndpoints:
-    - targets: ["192.168.10.1:9100"]
