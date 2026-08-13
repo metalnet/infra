@@ -7,7 +7,7 @@ spec:
   project: default
   sources:
   - repoURL: https://dirsigler.github.io/uptime-kuma-helm
-    targetRevision: 4.1.0
+    targetRevision: 4.2.0
     chart: uptime-kuma
     helm:
       releaseName: uptimekuma
