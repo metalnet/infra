@@ -14,7 +14,7 @@ spec:
       valueFiles:
       - $values/kube/core/piraeus/values.yaml
   - repoURL: ghcr.io/piraeusdatastore
-    targetRevision: 1.1.1
+    targetRevision: 1.2.0
     chart: helm-charts/linstor-cluster
     helm:
       releaseName: linstor-cluster
