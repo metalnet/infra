@@ -6,18 +6,16 @@ metadata:
 spec:
   project: default
   sources:
-  - repoURL: oci://ghcr.io/piraeusdatastore/piraeus-operator/piraeus
-    path: .
+  - repoURL: ghcr.io/piraeusdatastore
     targetRevision: 2.11.0
-    chart: piraeus
+    chart: piraeus-operator/piraeus
     helm:
       releaseName: piraeus
       valueFiles:
       - $values/kube/core/piraeus/values.yaml
-  - repoURL: oci://ghcr.io/piraeusdatastore/helm-charts/linstor-cluster
-    path: .
+  - repoURL: ghcr.io/piraeusdatastore
     targetRevision: 1.1.1
-    chart: linstor-cluster
+    chart: helm-charts/linstor-cluster
     helm:
       releaseName: linstor-cluster
       valuesObject:
