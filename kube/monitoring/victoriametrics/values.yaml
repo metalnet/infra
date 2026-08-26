@@ -43,13 +43,11 @@ vlagent:
   spec:
     k8sCollector:
       enabled: true
-  syslog:
-    tcp:
-      - name: syslog-tcp
-        value: :514
-    udp:
-      - name: syslog-udp
-        value: :514
+    syslogSpec:
+      tcpListeners:
+        - listenPort: 514
+      udpListeners:
+        - listenPort: 514
       
 grafana:
   useStatefulSet: true
