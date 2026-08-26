@@ -55,6 +55,18 @@ ports:
     protocol: TCP
     expose:
       mqtts: true
+  syslog-tcp:
+    port: 514
+    exposedPort: 514
+    protocol: TCP
+    expose:
+      syslog-tcp: true
+  syslog-udp:
+    port: 514
+    exposedPort: 514
+    protocol: UDP
+    expose:
+      syslog-udp: true
 service:
   annotations:
     metallb.io/loadBalancerIPs: 192.168.10.70
