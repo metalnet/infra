@@ -42,13 +42,8 @@ spec:
     - backendRefs:
         - name: mc-router
           port: 25565
-          protocol: TCP
           kind: Service
           group: ""
-      matches:
-        - rules:
-            type: HostSNI
-            value: "*"
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: UDPRoute
@@ -64,6 +59,5 @@ spec:
     - backendRefs:
         - name: mc-router
           port: 25565
-          protocol: UDP
           kind: Service
           group: ""
