@@ -40,7 +40,7 @@ spec:
       sectionName: syslog-tcp
   rules:
     - backendRefs:
-        - name: vlagent
+        - name: vlagent-vmks
           port: 514
           kind: Service
           group: ""
@@ -57,7 +57,7 @@ spec:
       sectionName: syslog-udp
   rules:
     - backendRefs:
-        - name: vlagent
+        - name: vlagent-vmks
           port: 514
           kind: Service
           group: ""
