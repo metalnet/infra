@@ -1,0 +1,69 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: syslog-tcp-gateway
+  namespace: monitoring
+spec:
+  gatewayClassName: traefik
+  listeners:
+    - name: syslog-tcp
+      protocol: TCP
+      port: 514
+      allowedRoutes:
+        namespaces:
+          from: Same
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: syslog-udp-gateway
+  namespace: monitoring
+spec:
+  gatewayClassName: traefik
+  listeners:
+    - name: syslog-udp
+      protocol: UDP
+      port: 514
+      allowedRoutes:
+        namespaces:
+          from: Same
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: TCPRoute
+metadata:
+  name: syslog-tcp-route
+  namespace: monitoring
+spec:
+  parentRefs:
+    - name: syslog-tcp-gateway
+      namespace: monitoring
+      sectionName: syslog-tcp
+  rules:
+    - backendRefs:
+        - name: syslog
+          port: 514
+          protocol: TCP
+          kind: Service
+          group: ""
+      matches:
+        - rules:
+            type: HostSNI
+            value: "*"
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: UDPRoute
+metadata:
+  name: syslog-udp-route
+  namespace: monitoring
+spec:
+  parentRefs:
+    - name: syslog-udp-gateway
+      namespace: monitoring
+      sectionName: syslog-udp
+  rules:
+    - backendRefs:
+        - name: syslog
+          port: 514
+          protocol: UDP
+          kind: Service
+          group: ""
