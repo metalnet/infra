@@ -39,9 +39,11 @@ spec:
       namespace: monitoring
       kind: Gateway
       sectionName: syslog-tcp
+      group: "gateway.networking.k8s.io"
   rules:
     - backendRefs:
         - name: vlagent-vmks
           port: 514
           kind: Service
           group: ""
+          weight: 1
