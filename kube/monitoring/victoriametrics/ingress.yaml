@@ -14,21 +14,6 @@ spec:
           from: Same
 ---
 apiVersion: gateway.networking.k8s.io/v1
-kind: Gateway
-metadata:
-  name: syslog-udp-gateway
-  namespace: monitoring
-spec:
-  gatewayClassName: traefik
-  listeners:
-    - name: syslog-udp
-      protocol: UDP
-      port: 514
-      allowedRoutes:
-        namespaces:
-          from: Same
----
-apiVersion: gateway.networking.k8s.io/v1
 kind: TCPRoute
 metadata:
   name: syslog-tcp-route
