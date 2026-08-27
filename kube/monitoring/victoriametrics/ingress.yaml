@@ -37,6 +37,7 @@ spec:
   parentRefs:
     - name: syslog-tcp-gateway
       namespace: monitoring
+      kind: Gateway
       sectionName: syslog-tcp
   rules:
     - backendRefs:
