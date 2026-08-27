@@ -44,20 +44,3 @@ spec:
           port: 25565
           kind: Service
           group: ""
----
-apiVersion: gateway.networking.k8s.io/v1
-kind: UDPRoute
-metadata:
-  name: minecraft-udp-route
-  namespace: minecraft
-spec:
-  parentRefs:
-    - name: minecraft-udp-gateway
-      namespace: minecraft
-      sectionName: minecraft-udp
-  rules:
-    - backendRefs:
-        - name: mc-router
-          port: 25565
-          kind: Service
-          group: ""

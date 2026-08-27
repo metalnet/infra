@@ -44,20 +44,3 @@ spec:
           port: 514
           kind: Service
           group: ""
----
-apiVersion: gateway.networking.k8s.io/v1
-kind: UDPRoute
-metadata:
-  name: syslog-udp-route
-  namespace: monitoring
-spec:
-  parentRefs:
-    - name: syslog-udp-gateway
-      namespace: monitoring
-      sectionName: syslog-udp
-  rules:
-    - backendRefs:
-        - name: vlagent-vmks
-          port: 514
-          kind: Service
-          group: ""
