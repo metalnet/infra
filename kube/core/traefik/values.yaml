@@ -56,14 +56,14 @@ ports:
     expose:
       mqtts: true
   syslog-tcp:
-    port: 514
-    exposedPort: 514
+    port: 1514
+    exposedPort: 1514
     protocol: TCP
     expose:
       syslog-tcp: true
   syslog-udp:
-    port: 514
-    exposedPort: 514
+    port: 1514
+    exposedPort: 1514
     protocol: UDP
     expose:
       syslog-udp: true

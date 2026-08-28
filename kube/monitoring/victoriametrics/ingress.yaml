@@ -8,7 +8,7 @@ spec:
   listeners:
     - name: syslog-tcp
       protocol: TCP
-      port: 514
+      port: 1514
       allowedRoutes:
         namespaces:
           from: Same
@@ -28,7 +28,7 @@ spec:
   rules:
     - backendRefs:
         - name: vlagent-vmks
-          port: 514
+          port: 1514
           kind: Service
           group: ""
           weight: 1

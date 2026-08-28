@@ -45,21 +45,21 @@ vlagent:
       enabled: true
     syslogSpec:
       tcpListeners:
-        - listenPort: 514
+        - listenPort: 1514
       udpListeners:
-        - listenPort: 514
+        - listenPort: 1514
     serviceSpec:
       spec:
         type: LoadBalancer
         ports: 
           - name: syslog-tcp
-            port: 514
+            port: 1514
             protocol: TCP
-            targetPort: 514
+            targetPort: 1514
           - name: syslog-udp
-            port: 514
+            port: 1514
             protocol: UDP
-            targetPort: 514
+            targetPort: 1514
       
 grafana:
   useStatefulSet: true
