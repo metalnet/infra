@@ -48,6 +48,18 @@ vlagent:
         - listenPort: 514
       udpListeners:
         - listenPort: 514
+    serviceSpec:
+      spec:
+        type: LoadBalancer
+        ports: 
+          - name: syslog-tcp
+            port: 514
+            protocol: TCP
+            targetPort: 514
+          - name: syslog-udp
+            port: 514
+            protocol: UDP
+            targetPort: 514
       
 grafana:
   useStatefulSet: true
