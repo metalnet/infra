@@ -279,10 +279,9 @@ resource "helm_release" "argocd" {
   version    = "10.6.4"
   namespace  = kubernetes_namespace_v1.argocd.metadata[0].name
 
-  set = [{
-    name  = "configs.params.server\\.insecure"
-    value = "true"
-  }]
+  values = [
+    "${file("argocd-values.yaml")}"
+  ]
 }
 
 resource "kubernetes_manifest" "argocd-root" {
