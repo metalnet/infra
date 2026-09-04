@@ -47,7 +47,7 @@ vlagent:
       tcpListeners:
         - listenPort: 1514
     extraArgs:
-      - -syslog.useLocalTimestamp.tcp
+      syslog.useLocalTimestamp.tcp: true
 
     serviceSpec:
       spec:
