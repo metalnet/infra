@@ -37,23 +37,6 @@ vlsingle:
       resources:
         requests:
           storage: 30Gi
-    syslogSpec:
-      tcpListeners:
-        - listenPort: 1514
-      udpListeners:
-        - listenPort: 1514
-    serviceSpec:
-      spec:
-        type: LoadBalancer
-        ports: 
-          - name: syslog-tcp
-            port: 1514
-            protocol: TCP
-            targetPort: 1514
-          - name: syslog-udp
-            port: 1514
-            protocol: UDP
-            targetPort: 1514
           
 vlagent:
   enabled: true
@@ -63,8 +46,9 @@ vlagent:
     syslogSpec:
       tcpListeners:
         - listenPort: 1514
-      udpListeners:
-        - listenPort: 1514
+    extraArgs:
+      - -syslog.useLocalTimestamp.tcp
+
     serviceSpec:
       spec:
         type: LoadBalancer
@@ -72,10 +56,6 @@ vlagent:
           - name: syslog-tcp
             port: 1514
             protocol: TCP
-            targetPort: 1514
-          - name: syslog-udp
-            port: 1514
-            protocol: UDP
             targetPort: 1514
       
 grafana:

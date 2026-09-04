@@ -61,12 +61,6 @@ ports:
     protocol: TCP
     expose:
       syslog-tcp: true
-  syslog-udp:
-    port: 1514
-    exposedPort: 1514
-    protocol: UDP
-    expose:
-      syslog-udp: true
 service:
   annotations:
     metallb.io/loadBalancerIPs: 192.168.10.70
