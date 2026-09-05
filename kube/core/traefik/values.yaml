@@ -43,12 +43,6 @@ ports:
     protocol: UDP
     expose:
       default: true
-  mqtt:
-    port: 1883
-    exposedPort: 1883
-    protocol: TCP
-    expose:
-      default: true
   syslog-tcp:
     port: 1514
     exposedPort: 1514
