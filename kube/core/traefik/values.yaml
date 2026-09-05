@@ -49,12 +49,6 @@ ports:
     protocol: TCP
     expose:
       default: true
-  mqtts:
-    port: 8883
-    exposedPort: 8883
-    protocol: TCP
-    expose:
-      default: true
   syslog-tcp:
     port: 1514
     exposedPort: 1514
