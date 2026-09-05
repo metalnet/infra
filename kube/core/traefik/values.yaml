@@ -43,6 +43,18 @@ ports:
     protocol: UDP
     expose:
       default: true
+  mqtt:
+    port: 1883
+    exposedPort: 1883
+    protocol: TCP
+    expose:
+      default: true
+  mqtts:
+    port: 8883
+    exposedPort: 8883
+    protocol: TCP
+    expose:
+      default: true
 service:
   annotations:
     metallb.io/loadBalancerIPs: 192.168.10.70
