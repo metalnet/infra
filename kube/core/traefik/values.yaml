@@ -24,7 +24,7 @@ gateway:
 ports:
   metrics:
     expose:
-      metrics: true
+      default: true
   kms:
     port: 1688
     exposedPort: 1688
