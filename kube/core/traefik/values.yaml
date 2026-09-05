@@ -74,12 +74,7 @@ service:
           port: 9100
           targetPort: metrics
           protocol: TCP
-    minecraft-tcp:
+    minecraft:
       labels:
-        app.kubernetes.io/instance: traefik-minecraft-tcp
+        traefik-service-label: minecraft-tcp
       type: LoadBalancer
-      ports:
-        - name: minecraft-tcp
-          port: 25565
-          targetPort: minecraft-tcp
-          protocol: TCP
