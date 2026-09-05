@@ -74,16 +74,12 @@ service:
           port: 9100
           targetPort: metrics
           protocol: TCP
-    minecraft:
+    minecraft-tcp:
       labels:
-        app.kubernetes.io/instance: traefik-minecraft
+        app.kubernetes.io/instance: traefik-minecraft-tcp
       type: LoadBalancer
       ports:
         - name: minecraft-tcp
           port: 25565
           targetPort: minecraft-tcp
           protocol: TCP
-        - name: minecraft-udp
-          port: 25565
-          targetPort: minecraft-udp
-          protocol: UDP
