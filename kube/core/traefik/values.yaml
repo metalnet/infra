@@ -36,13 +36,13 @@ ports:
     exposedPort: 25565
     protocol: TCP
     expose:
-      minecraft-tcp: true
+      minecraft: true
   minecraft-udp:
     port: 25565
     exposedPort: 25565
     protocol: UDP
     expose:
-      minecraft-udp: true
+      minecraft: true
   mqtt:
     port: 1883
     exposedPort: 1883
@@ -76,5 +76,5 @@ service:
           protocol: TCP
     minecraft:
       labels:
-        traefik-service-label: minecraft-tcp
-      type: LoadBalancer
+        traefik-service-label: minecraft
+      type: ClusterIP
