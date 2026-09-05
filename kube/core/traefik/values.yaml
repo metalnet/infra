@@ -23,6 +23,9 @@ gateway:
   enabled: false
 ports:
   metrics:
+    port: 9100
+    exposedPort: 9100
+    protocol: TCP
     expose:
       default: true
   kms:
