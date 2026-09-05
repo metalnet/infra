@@ -31,18 +31,6 @@ ports:
     protocol: TCP
     expose:
       default: true
-  minecraft-tcp:
-    port: 25565
-    exposedPort: 25565
-    protocol: TCP
-    expose:
-      default: true
-  minecraft-udp:
-    port: 25565
-    exposedPort: 25565
-    protocol: UDP
-    expose:
-      default: true
   mqtt:
     port: 1883
     exposedPort: 1883
@@ -52,6 +40,12 @@ ports:
   mqtts:
     port: 8883
     exposedPort: 8883
+    protocol: TCP
+    expose:
+      default: true
+  syslog-tcp:
+    port: 1514
+    exposedPort: 1514
     protocol: TCP
     expose:
       default: true
