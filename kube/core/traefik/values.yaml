@@ -24,7 +24,7 @@ gateway:
 ports:
   metrics:
     expose:
-      default: true
+      metrics: true
   kms:
     port: 1688
     exposedPort: 1688
@@ -52,3 +52,13 @@ ports:
 service:
   annotations:
     metallb.io/loadBalancerIPs: 192.168.10.70
+  additionalServices:
+    metrics:
+      labels:
+        app.kubernetes.io/instance: traefik-metrics
+      type: ClusterIP
+      ports:
+        - name: metrics
+          port: 9100
+          targetPort: metrics
+          protocol: TCP
