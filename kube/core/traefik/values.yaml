@@ -26,42 +26,24 @@ ports:
     expose:
       default: true
   kms:
-    name: kms
     port: 1688
     exposedPort: 1688
     protocol: TCP
     expose:
       default: true
-  minecraft-tcp:
-    name: minecraft-tcp
-    port: 25565
-    exposedPort: 25565
-    protocol: TCP
-    expose:
-      default: true
-  minecraft-udp:
-    name: minecraft-udp
-    port: 25565
-    exposedPort: 25565
-    protocol: UDP
-    expose:
-      default: true
   mqtt:
-    name: mqtt
     port: 1883
     exposedPort: 1883
     protocol: TCP
     expose:
       default: true
   mqtts:
-    name: mqtts
     port: 8883
     exposedPort: 8883
     protocol: TCP
     expose:
       default: true
   syslog-tcp:
-    name: syslog-tcp
     port: 1514
     exposedPort: 1514
     protocol: TCP
