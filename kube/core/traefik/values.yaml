@@ -31,6 +31,18 @@ ports:
     protocol: TCP
     expose:
       default: true
+  minecraft-tcp:
+    port: 25565
+    exposedPort: 25565
+    protocol: TCP
+    expose:
+      default: true
+  minecraft-udp:
+    port: 25565
+    exposedPort: 25565
+    protocol: UDP
+    expose:
+      default: true
   syslog-tcp:
     port: 1514
     exposedPort: 1514
