@@ -30,37 +30,37 @@ ports:
     exposedPort: 1688
     protocol: TCP
     expose:
-      kms: true
+      default: true
   minecraft-tcp:
     port: 25565
     exposedPort: 25565
     protocol: TCP
     expose:
-      minecraft-tcp: true
+      default: true
   minecraft-udp:
     port: 25565
     exposedPort: 25565
     protocol: UDP
     expose:
-      minecraft-udp: true
+      default: true
   mqtt:
     port: 1883
     exposedPort: 1883
     protocol: TCP
     expose:
-      mqtt: true
+      default: true
   mqtts:
     port: 8883
     exposedPort: 8883
     protocol: TCP
     expose:
-      mqtts: true
+      default: true
   syslog-tcp:
     port: 1514
     exposedPort: 1514
     protocol: TCP
     expose:
-      syslog-tcp: true
+      default: true
 service:
   annotations:
     metallb.io/loadBalancerIPs: 192.168.10.70
