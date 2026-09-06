@@ -63,3 +63,25 @@ spec:
           port: 8080
           kind: TraefikService
           group: traefik.io
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: traefik-minecraft
+  namespace: traefik
+spec:
+  type: LoadBalancer
+  selector:
+    app.kubernetes.io/name: traefik
+    app.kubernetes.io/instance: traefik-traefik
+  ports:
+    - name: minecraft-tcp
+      nodePort: 25565
+      port: 25565
+      targetPort: minecraft-tcp
+      protocol: TCP
+    - name: minecraft-udp
+      nodePort: 25565
+      port: 25565
+      targetPort: minecraft-udp
+      protocol: UDP
