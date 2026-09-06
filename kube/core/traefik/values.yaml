@@ -74,7 +74,4 @@ service:
           port: 9100
           targetPort: metrics
           protocol: TCP
-    minecraft:
-      labels:
-        traefik-service-label: minecraft
-      type: ClusterIP
+
