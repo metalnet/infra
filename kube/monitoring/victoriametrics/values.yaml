@@ -46,17 +46,6 @@ vlagent:
     syslogSpec:
       tcpListeners:
         - listenPort: 1514
-    serviceSpec:
-      metadata:
-        annotations:
-          metallb.io/loadBalancerIPs: 192.168.10.73
-      spec:
-        type: LoadBalancer
-        ports: 
-          - name: syslog-tcp
-            port: 1514
-            protocol: TCP
-            targetPort: 1514
       
 grafana:
   useStatefulSet: true
