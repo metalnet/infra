@@ -64,6 +64,7 @@ ports:
 service:
   annotations:
     metallb.io/loadBalancerIPs: 192.168.10.70
+    metallb.io/allow-shared-ip: "traefik"
   additionalServices:
     metrics:
       labels:
