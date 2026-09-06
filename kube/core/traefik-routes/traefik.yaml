@@ -76,12 +76,10 @@ spec:
     app.kubernetes.io/instance: traefik-traefik
   ports:
     - name: minecraft-tcp
-      nodePort: 25565
       port: 25565
       targetPort: minecraft-tcp
       protocol: TCP
     - name: minecraft-udp
-      nodePort: 25565
       port: 25565
       targetPort: minecraft-udp
       protocol: UDP
