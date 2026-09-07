@@ -1,6 +1,10 @@
 - name: Base Configuration
   hosts: hosts
   tasks:
+    - name: Install needrestart
+      ansible.builtin.package:
+        name: needrestart
+        state: present
     - name: Install prometheus node exporter
       ansible.builtin.package:
         name: prometheus-node-exporter
@@ -9,3 +13,32 @@
       ansible.builtin.package:
         name: prometheus-node-exporter-collectors
         state: present
+    - name: Install rsyslog
+      ansible.builtin.package:
+        name: rsyslog
+        state: present
+    - name: Configure rsyslog
+      ansible.builtin.copy:
+        dest: /etc/rsyslog.d/01-victoriametrics.conf
+        content: |
+          module(load="imjournal" StateFile="imjournal.state")
+          module(load="mmjsonparse")
+
+          template(name="UTCForwardFormat" type="string" string="<%PRI%>%TIMESTAMP:::date-utc% %HOSTNAME% %syslogtag:1:32%%msg:::sp-if-no-1st-sp%%msg%\n")
+
+          action(type="omfwd"
+                 target="syslog.kube.metalnet.org"
+                 port="1514"
+                 protocol="tcp"
+                 template="UTCForwardFormat"
+                 queue.type="LinkedList"
+                 queue.filename="fwd_journal_q"
+                 queue.saveonshutdown="on")
+        mode: '0644'
+      notify:
+        - Restart rsyslog
+  handlers:
+    - name: Restart rsyslog
+      ansible.builtin.systemd_service:
+        name: rsyslog
+        state: restarted
