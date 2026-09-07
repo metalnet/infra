@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: pihole
-  namespace: pihole
+  namespace: argocd
 spec:
   project: apps
   sources:
