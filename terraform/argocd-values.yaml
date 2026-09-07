@@ -26,8 +26,3 @@ applicationSet:
     serviceMonitor:
       enabled: true
 
-redis:
-  metrics:
-    enabled: true
-    serviceMonitor:
-      enabled: true
