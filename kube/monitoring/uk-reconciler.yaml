@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   sources:
-  - repoURL: https://github.com/moellere/uptime-kuma-reconciler
+  - repoURL: https://github.com/mshogren/uptime-kuma-reconciler
     targetRevision: HEAD
     path: charts/uptime-kuma-reconciler
     helm:
