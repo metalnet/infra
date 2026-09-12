@@ -29,3 +29,7 @@ spec:
           port: 25565
           kind: Service
           group: ""
+      matches:
+        - rules:
+            type: HostSNI
+            value: "*"
