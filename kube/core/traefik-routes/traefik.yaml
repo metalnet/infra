@@ -63,26 +63,3 @@ spec:
           port: 8080
           kind: TraefikService
           group: traefik.io
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: traefik-minecraft
-  namespace: traefik
-  annotations:
-    metallb.io/loadBalancerIPs: 192.168.10.70
-    metallb.io/allow-shared-ip: "traefik"
-spec:
-  type: LoadBalancer
-  selector:
-    app.kubernetes.io/name: traefik
-    app.kubernetes.io/instance: traefik-traefik
-  ports:
-    - name: minecraft-tcp
-      port: 25565
-      targetPort: minecraft-tcp
-      protocol: TCP
-    - name: minecraft-udp
-      port: 25565
-      targetPort: minecraft-udp
-      protocol: UDP
