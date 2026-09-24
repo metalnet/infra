@@ -18,7 +18,7 @@ credentials:
   existingSecret: velero-cloud-credentials
 initContainers:
   - name: velero-plugin-for-aws
-    image: velero/velero-plugin-for-aws:v1.13.1@sha256:472d0e486d5d5c23c782b1b123530c7df8645784523ec36ca661a326d47885ff
+    image: velero/velero-plugin-for-aws:v1.14.3@sha256:74597d39c143d4d7bc66a27f62a627947715c60ce498b9dfbbd6513f2a113030
     imagePullPolicy: IfNotPresent
     volumeMounts:
       - mountPath: /target
