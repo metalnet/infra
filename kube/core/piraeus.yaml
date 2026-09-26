@@ -7,7 +7,7 @@ spec:
   project: default
   sources:
   - repoURL: ghcr.io/piraeusdatastore
-    targetRevision: 2.11.0
+    targetRevision: 2.12.0
     chart: piraeus-operator/piraeus
     helm:
       releaseName: piraeus
