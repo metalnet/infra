@@ -1,6 +1,6 @@
 services:
   homeassistant:
-    image: "ghcr.io/home-assistant/home-assistant:stable@sha256:adb3341e31e03e0048e60d8c1cf952e118a381ae258bb921d3da12a3b27bf0c2"
+    image: "ghcr.io/home-assistant/home-assistant:stable@sha256:3e6710a7ab2a61311d9d899b719f6c3657791c63e8f4942cec4ebc42401d6b76"
     volumes:
       - "/etc/localtime:/etc/localtime:ro"
       - "/mnt/ceph/ha:/config"
