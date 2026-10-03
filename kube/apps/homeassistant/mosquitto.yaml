@@ -4,7 +4,7 @@ metadata:
   name:  mosquitto
   namespace: argocd
 spec:
-  project: apps
+  project: homeassistant
   sources:
   - repoURL: https://bdclark.github.io/helm-charts
     targetRevision: 0.6.1

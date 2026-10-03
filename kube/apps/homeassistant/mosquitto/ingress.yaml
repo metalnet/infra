@@ -1,0 +1,32 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: mosquitto-gateway
+  namespace: homeassistant
+spec:
+  gatewayClassName: traefik
+  listeners:
+    - name: mqtt
+      protocol: TCP
+      port: 1883
+      allowedRoutes:
+        namespaces:
+          from: Same
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: TCPRoute
+metadata:
+  name: mosquitto-tcp-route
+  namespace: homeassistant
+spec:
+  parentRefs:
+    - name: mosquitto-gateway
+      namespace: homeassistant
+      sectionName: mqtt
+  rules:
+    - backendRefs:
+        - name: mosquitto
+          port: 1883
+          kind: Service
+          group: ""
+          weight: 1

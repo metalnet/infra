@@ -1,0 +1,15 @@
+config:
+  allowAnonymous: false
+
+auth:
+  secretRef:
+    name: mosquitto-auth
+
+persistence:
+  enabled: true
+
+service:
+  ports:
+    websocket:
+      enabled: true
+  
