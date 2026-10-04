@@ -18,6 +18,8 @@ kind: TCPRoute
 metadata:
   name: minecraft-tcp-route
   namespace: minecraft
+  annotations:
+    uptimekuma.io/monitor: "true"
 spec:
   parentRefs:
     - name: minecraft-tcp-gateway
