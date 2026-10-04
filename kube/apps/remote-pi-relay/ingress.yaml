@@ -25,6 +25,8 @@ kind: HTTPRoute
 metadata:
   name: remote-pi-relay-http-route
   namespace: remote-pi-relay
+  annotations:
+    uptimekuma.io/monitor: "true"
 spec:
   parentRefs:
     - name: remote-pi-relay-gateway
