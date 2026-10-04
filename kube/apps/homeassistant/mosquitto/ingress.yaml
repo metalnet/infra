@@ -3,15 +3,22 @@ kind: Gateway
 metadata:
   name: mosquitto-gateway
   namespace: homeassistant
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare-acme-issuer
 spec:
   gatewayClassName: traefik
   listeners:
-    - name: mqtt
+    - name: mqtts
       protocol: TCP
-      port: 1883
+      port: 8883
+      hostname: "mosquitto.kube.metalnet.org"
       allowedRoutes:
         namespaces:
           from: Same
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: mosquitto-kube-metalnet-org-tls
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: TCPRoute
@@ -22,7 +29,7 @@ spec:
   parentRefs:
     - name: mosquitto-gateway
       namespace: homeassistant
-      sectionName: mqtt
+      sectionName: mqtts
   rules:
     - backendRefs:
         - name: mosquitto
