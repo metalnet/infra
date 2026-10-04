@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nolongerevil-config
+  namespace: homeassistant
+data:
+  API_ORIGIN: "https://nle-api.kube.metalnet.org"
+  PROXY_PORT: "8000"
+  CONTROL_PORT: "8081"
+  ENTRY_KEY_TTL_SECONDS: "3600"
+  WEATHER_CACHE_TTL_MS: "600000"
+  SUBSCRIPTION_TIMEOUT_MS: "0"
+  MAX_SUBSCRIPTIONS_PER_DEVICE: "100"
+  DEBUG_LOGGING: "false"
+  SQLITE3_DB_PATH: "/app/data/database.sqlite"
+  MQTT_ENABLED: "true"
+  MQTT_SCHEME: "mqtts"
+  MQTT_HOST: "mqtt.kube.metalnet.org"
+  MQTT_PORT: "8883"
+  MQTT_BROKER_URL: "mqtts://mqtt.kube.metalnet.org:8883"
+  MQTT_USER: "test"
+  MQTT_CLIENT_ID: "nolongerevil-hass"
+  MQTT_TOPIC_PREFIX: "nest"
+  MQTT_DISCOVERY_PREFIX: "homeassistant"
+  MQTT_HA_DISCOVERY: "true"
+  #NEST_DEVICES: "192.168.10.181:02AA01AC171503ZH,192.168.10.135:02AA01AC171502LA"

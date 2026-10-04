@@ -1,0 +1,46 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: nle-api-gateway
+  namespace: homeassistant
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare-acme-issuer
+spec:
+  gatewayClassName: traefik
+  listeners:
+    - name: websecure
+      protocol: HTTPS
+      hostname: "nle-api.kube.metalnet.org"
+      port: 8443
+      allowedRoutes:
+        namespaces:
+          from: Same
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: nle-api-kube-metalnet-org-tls
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: nle-api-http-route
+  namespace: homeassistant
+  annotations:
+    uptimekuma.io/monitor: "true"
+spec:
+  parentRefs:
+    - name: nle-api-gateway
+      namespace: homeassistant
+      sectionName: websecure
+  hostnames:
+    - "nle-api.kube.metalnet.org"
+  rules:
+    - backendRefs:
+        - name: nolongerevil-device
+          port: 7001
+          kind: Service
+          group: ""
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
