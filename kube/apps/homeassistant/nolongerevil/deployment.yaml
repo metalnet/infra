@@ -33,7 +33,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: nolongerevil
-          image: ghcr.io/codykociemba/nolongerevil-selfhosted@v1.0.1
+          image: ghcr.io/codykociemba/NoLongerEvil-SelfHosted:v1.0.1
           ports:
             - name: device-api
               containerPort: 8000
