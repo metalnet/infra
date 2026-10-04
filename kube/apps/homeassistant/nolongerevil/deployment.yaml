@@ -77,8 +77,10 @@ kind: Service
 metadata:
   name: nolongerevil-device
   namespace: homeassistant
+  annotations:
+    metallb.io/loadBalancerIPs: 192.168.10.73
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: nolongerevil
   ports:
