@@ -4,7 +4,7 @@ metadata:
   name: nolongerevil-config
   namespace: homeassistant
 data:
-  API_ORIGIN: "https://192.168.10.73:7001"
+  API_ORIGIN: "http://192.168.10.73:7001"
   PROXY_PORT: "8000"
   CONTROL_PORT: "8081"
   ENTRY_KEY_TTL_SECONDS: "3600"
