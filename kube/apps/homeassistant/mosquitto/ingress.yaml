@@ -9,7 +9,7 @@ spec:
   gatewayClassName: traefik
   listeners:
     - name: mqtts
-      protocol: TCP
+      protocol: TLS
       port: 8883
       hostname: "mosquitto.kube.metalnet.org"
       allowedRoutes:
@@ -21,11 +21,13 @@ spec:
           - name: mosquitto-kube-metalnet-org-tls
 ---
 apiVersion: gateway.networking.k8s.io/v1
-kind: TCPRoute
+kind: TLSRoute
 metadata:
   name: mosquitto-tcp-route
   namespace: homeassistant
 spec:
+  hostnames:
+    - "mosquitto.kube.metalnet.org"
   parentRefs:
     - name: mosquitto-gateway
       namespace: homeassistant
