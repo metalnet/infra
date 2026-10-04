@@ -11,14 +11,14 @@ spec:
     - name: mqtts
       protocol: TLS
       port: 8883
-      hostname: "mosquitto.kube.metalnet.org"
+      hostname: "mqtt.kube.metalnet.org"
       allowedRoutes:
         namespaces:
           from: Same
       tls:
         mode: Terminate
         certificateRefs:
-          - name: mosquitto-kube-metalnet-org-tls
+          - name: mqtt-kube-metalnet-org-tls
 ---
 apiVersion: gateway.networking.k8s.io/v1
 kind: TLSRoute
@@ -27,7 +27,7 @@ metadata:
   namespace: homeassistant
 spec:
   hostnames:
-    - "mosquitto.kube.metalnet.org"
+    - "mqtt.kube.metalnet.org"
   parentRefs:
     - name: mosquitto-gateway
       namespace: homeassistant
