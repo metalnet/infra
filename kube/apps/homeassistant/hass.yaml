@@ -7,7 +7,7 @@ spec:
   project: apps
   sources:
   - repoURL: http://pajikos.github.io/home-assistant-helm-chart
-    targetRevision: 0.3.83
+    targetRevision: 0.3.84
     chart: home-assistant
     helm:
       releaseName: hass
