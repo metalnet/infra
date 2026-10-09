@@ -7,7 +7,7 @@ spec:
   project: apps
   sources:
   - repoURL: https://chrissnell.github.io/unifi-os-kubernetes
-    targetRevision: 0.2.13 
+    targetRevision: 0.2.15 
     chart: unifi-os-server
     helm:
       releaseName: unifi
