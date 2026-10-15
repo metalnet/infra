@@ -30,7 +30,7 @@ spec:
             - name: kms
               containerPort: 1688
             - name: gui
-              containerPort: 3000
+              containerPort: 8080
           resources:
             requests: { cpu: 50m, memory: 64Mi }
             limits:   { cpu: 500m, memory: 256Mi }
@@ -62,5 +62,5 @@ spec:
     app: kms
   ports:
     - name: gui
-      port: 3000
+      port: 8080
       targetPort: gui

@@ -79,6 +79,6 @@ spec:
             value: /
       backendRefs:
         - name: kms-gui
-          port: 3000
+          port: 8080
           kind: Service
           group: ""
