@@ -48,22 +48,6 @@ spec:
             limits:   { cpu: 500m, memory: 256Mi }
           securityContext:
             allowPrivilegeEscalation: false
-        - name: gui
-          image: 11notes/kms-gui:1.0.3
-          env:
-            - name: TZ
-              value: America/Edmonton
-          ports:
-            - name: gui
-              containerPort: 3000
-          volumeMounts:
-            - name: var
-              mountPath: /kms/var
-          resources:
-            requests: { cpu: 50m, memory: 64Mi }
-            limits:   { cpu: 500m, memory: 256Mi }
-          securityContext:
-            allowPrivilegeEscalation: false
       volumes:
         - name: var
           persistentVolumeClaim:
