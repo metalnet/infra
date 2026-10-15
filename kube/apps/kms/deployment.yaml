@@ -36,7 +36,7 @@ spec:
           image: 11notes/kms:1.0.3
           env:
             - name: LOGFILE
-              value: /kms/var/log/kms.log
+              value: /kms/var/kms.log
             - name: TZ
               value: America/Edmonton
           ports:
