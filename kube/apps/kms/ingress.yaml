@@ -8,7 +8,7 @@ spec:
   listeners:
     - name: kms
       protocol: TCP
-      port: 1668
+      port: 1688
       allowedRoutes:
         namespaces:
           from: Same
