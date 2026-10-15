@@ -78,7 +78,7 @@ spec:
             type: PathPrefix
             value: /
       backendRefs:
-        - name: kms-ui
+        - name: kms-gui
           port: 3000
           kind: Service
           group: ""
