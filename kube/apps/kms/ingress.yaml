@@ -27,7 +27,7 @@ spec:
   rules:
     - backendRefs:
         - name: kms
-          port: 1668
+          port: 1688
           kind: Service
           group: ""
 ---
