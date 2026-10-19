@@ -57,7 +57,7 @@ variable "cluster_ip" {
 }
 
 provider "proxmox" {
-  endpoint = "https://proxmox.apps.metalnet.org"
+  endpoint = "https://proxmox.kube.metalnet.org"
   username = "root@pam"
   password = var.pm_pass
 }
@@ -152,81 +152,6 @@ data "talos_machine_configuration" "control_machine_config" {
   machine_secrets    = talos_machine_secrets.machine_secrets.machine_secrets
   kubernetes_version = "v${var.kubernetes_version}"
   talos_version      = "v${var.talos_version}"
-  config_patches = [
-    yamlencode({
-      machine = {
-        install = {
-          image = local.install_image
-        }
-      }
-    }),
-    yamlencode({
-      cluster = {
-        allowSchedulingOnControlPlanes = true
-      }
-    }),
-    yamlencode({
-      machine = {
-        nodeLabels = {
-          "node.kubernetes.io/exclude-from-external-load-balancers" = {
-            "$patch" = "delete"
-          }
-        }
-      }
-    }),
-    yamlencode({
-      machine = {
-        network = {
-          interfaces = [{
-            interface = "ens18"
-            dhcp = true
-            vip = {
-              ip = var.cluster_ip
-            }
-          }]
-        }
-      }
-    }),
-    yamlencode({
-      machine = {
-        kernel = {
-          modules = [
-            {
-              name = "drbd"
-              parameters = [
-                "usermode_helper=disabled"
-              ]
-            },
-            {
-              name = "drbd_transport_tcp"
-            },
-            {
-              name = "dm-thin-pool"
-            }
-          ]
-        }
-      }
-    }),
-    yamlencode({
-      cluster = {
-        etcd = {
-          extraArgs = {
-            listen-metrics-urls = "http://0.0.0.0:2381"
-          }
-        }
-        controllerManager = {
-          extraArgs = {
-            bind-address = "0.0.0.0"
-          }
-        }
-        scheduler = {
-          extraArgs = {
-            bind-address = "0.0.0.0"
-          }
-        }
-      }
-    }),
-  ]
 }
 
 resource "talos_machine_configuration_apply" "control_machine_config_apply" {
