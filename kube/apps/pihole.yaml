@@ -7,7 +7,7 @@ spec:
   project: apps
   sources:
   - repoURL: ghcr.io/helmforgedev
-    targetRevision: 2.0.14
+    targetRevision: 2.1.0
     chart: helm/pihole
     helm:
       releaseName: pihole
