@@ -2,20 +2,23 @@ nameOverride: vmks
 defaultDashboards:
   annotations:
     argocd.argoproj.io/sync-options: ServerSideApply=true
-    
+
 victoria-metrics-operator:
   operator:
     prometheus_converter_add_argocd_ignore_annotations: true
   enable_converter_ownership: false
-    
+
 vmsingle:
   server:
     persistentVolume:
       extraLabels:
         velero.io/exclude-from-backup: true
-        
+
 vmagent:
   spec:
+    resources:
+      limits:
+        cpu: "400m"
     extraEnvs:
       - name: GOGC
         value: "100"
@@ -37,7 +40,7 @@ vlsingle:
       resources:
         requests:
           storage: 30Gi
-          
+
 vlagent:
   enabled: true
   spec:
@@ -46,7 +49,7 @@ vlagent:
     syslogSpec:
       tcpListeners:
         - listenPort: 1514
-      
+
 grafana:
   useStatefulSet: true
   persistence:
