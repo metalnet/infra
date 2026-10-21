@@ -22,6 +22,8 @@ vmagent:
     extraEnvs:
       - name: GOGC
         value: "100"
+    extraArgs:
+      promscrape.maxScrapeSize: "56777216"
 
 vmalert:
   spec:
