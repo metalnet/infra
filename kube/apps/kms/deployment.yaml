@@ -45,7 +45,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: kms
+    app.kubernetes.io/name: kms
   ports:
     - name: kms
       port: 1688
@@ -59,7 +59,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: kms
+    app.kubernetes.io/name: kms
   ports:
     - name: gui
       port: 8080
