@@ -2,11 +2,6 @@ nameOverride: vmks
 defaultDashboards:
   annotations:
     argocd.argoproj.io/sync-options: ServerSideApply=true
-defaultRules:    
-  sources:
-    pve:
-      url: https://raw.githubusercontent.com/samber/awesome-prometheus-alerts/refs/heads/master/dist/rules/proxmox-ve/prometheus-pve-exporter.yml
-      enabled: true
 
 victoria-metrics-operator:
   operator:
