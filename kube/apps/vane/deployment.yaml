@@ -22,7 +22,7 @@ spec:
           type: RuntimeDefault
       containers:
         - name: app
-          image: tzcrazykns1337/vane:latest
+          image: itzcrazykns1337/vane:latest
           ports:
             - name: http
               containerPort: 3000
