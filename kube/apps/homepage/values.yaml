@@ -8,7 +8,10 @@ serviceAccount:
 
 config:
   bookmarks: {}
-  widgets: {}
+  widgets:
+    - search:
+        provider: custom
+        url: https://www.perplexity.ai/search/?q=
   services:
     - Infrastructure:                                                                     
         - OPNSense:                 
