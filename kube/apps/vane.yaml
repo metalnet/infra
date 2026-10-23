@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: vane
+  namespace: argocd
+spec:
+  project: apps
+  sources:
+  - repoURL: https://github.com/metalnet/infra
+    targetRevision: HEAD
+    path: kube/apps/vane
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: vane 
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+      enabled: true
+    syncOptions:
+      - CreateNamespace=true
+  
