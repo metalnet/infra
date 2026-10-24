@@ -1,0 +1,6 @@
+migrationJob:
+  hooks:
+    argocd:
+      enabled: false
+    helm:
+      enabled: true
