@@ -1,5 +1,5 @@
 migrationJob:
-  enabled: true
+  enabled: false
   hooks:
     argocd:
       enabled: true
