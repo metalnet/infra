@@ -3,4 +3,4 @@ migrationJob:
     argocd:
       enabled: false
     helm:
-      enabled: true
+      enabled: false
