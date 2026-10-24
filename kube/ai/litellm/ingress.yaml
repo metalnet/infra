@@ -1,0 +1,51 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: litellm-gateway
+  namespace: ai
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare-acme-issuer
+spec:
+  gatewayClassName: traefik
+  listeners:
+    - name: websecure
+      protocol: HTTPS
+      hostname: "litellm.kube.metalnet.org"
+      port: 8443
+      allowedRoutes:
+        namespaces:
+          from: Same
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: litellm-kube-metalnet-org-tls
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: litellm-http-route
+  namespace: ai
+  annotations:
+    gethomepage.dev/href: "https://litellm.kube.metalnet.org"
+    gethomepage.dev/enabled: "true"
+    gethomepage.dev/group: AI
+    gethomepage.dev/name: LiteLLM
+    gethomepage.dev/app: litellm
+    uptime-kuma.io/monitor: "true"
+spec:
+  parentRefs:
+    - name: litellm-gateway
+      namespace: ai
+      sectionName: websecure
+  hostnames:
+    - "litellm.kube.metalnet.org"
+  rules:
+    - backendRefs:
+        - name: litellm
+          port: 4000
+          kind: Service
+          group: ""
+      matches:
+        - path:
+            type: PathPrefix
+            value: /
