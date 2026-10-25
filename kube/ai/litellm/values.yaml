@@ -4,6 +4,7 @@ proxy_config:
     store_model_in_db: true
   litellm_settings:
     modify_params: true
+  model_list: {}
 
 migrationJob:
   enabled: false
