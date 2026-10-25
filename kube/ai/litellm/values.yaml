@@ -3,7 +3,7 @@ proxy_config:
     disable_env_credential_login: true
     store_model_in_db: true
   litellm_settings:
-    modify_params: true
+    drop_params: true
   model_list: {}
 
 migrationJob:
