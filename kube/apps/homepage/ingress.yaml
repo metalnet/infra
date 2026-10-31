@@ -8,9 +8,31 @@ metadata:
 spec:
   gatewayClassName: traefik
   listeners:
-    - name: websecure
+    - name: homepage
       protocol: HTTPS
       hostname: "homepage.kube.metalnet.org"
+      port: 8443
+      allowedRoutes:
+        namespaces:
+          from: Same
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: homepage-kube-metalnet-org-tls
+    - name: www
+      protocol: HTTPS
+      hostname: "www.metalnet.org"
+      port: 8443
+      allowedRoutes:
+        namespaces:
+          from: Same
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: homepage-kube-metalnet-org-tls
+    - name: toplevel
+      protocol: HTTPS
+      hostname: "metalnet.org"
       port: 8443
       allowedRoutes:
         namespaces:
