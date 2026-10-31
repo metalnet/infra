@@ -34,6 +34,8 @@ spec:
       sectionName: websecure
   hostnames:
     - "homepage.kube.metalnet.org"
+    - "www.metalnet.org"
+    - "metalnet.org"
   rules:
     - backendRefs:
         - name: homepage
