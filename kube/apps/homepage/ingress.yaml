@@ -70,7 +70,7 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: homepage-http-route
+  name: www-http-route
   namespace: homepage
   annotations:
     uptime-kuma.io/monitor: "true"
@@ -95,7 +95,7 @@ spec:
 apiVersion: gateway.networking.k8s.io/v1
 kind: HTTPRoute
 metadata:
-  name: homepage-http-route
+  name: toplevel-http-route
   namespace: homepage
   annotations:
     uptime-kuma.io/monitor: "true"
