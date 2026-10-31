@@ -8,7 +8,7 @@ metadata:
 spec:
   gatewayClassName: traefik
   listeners:
-    - name: homepage
+    - name: websecure
       protocol: HTTPS
       hostname: "homepage.kube.metalnet.org"
       port: 8443
