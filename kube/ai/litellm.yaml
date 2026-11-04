@@ -7,7 +7,7 @@ spec:
   project: ai
   sources:
   - repoURL: ghcr.io/berriai
-    targetRevision: 1.106.6
+    targetRevision: 1.108.0
     chart: litellm-helm
     helm:
       releaseName: litellm
