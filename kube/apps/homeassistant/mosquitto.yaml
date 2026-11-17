@@ -7,7 +7,7 @@ spec:
   project: homeassistant
   sources:
   - repoURL: https://bdclark.github.io/helm-charts
-    targetRevision: 0.6.1
+    targetRevision: 0.6.2
     chart: mosquitto
     helm:
       releaseName: mosquitto
