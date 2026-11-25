@@ -63,7 +63,8 @@ service:
     metrics:
       labels:
         app.kubernetes.io/instance: traefik-metrics
-      type: ClusterIP
+      spec:
+        type: ClusterIP
       ports:
         - name: metrics
           port: 9100
