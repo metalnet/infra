@@ -69,7 +69,7 @@ grafana:
     - victoriametrics-logs-datasource
   grafana.ini:
     server:
-      root_url: https://grafana.kube.metalnet.org/
+      root_url: "https://grafana.kube.metalnet.org/"
 
 alertmanager:
   spec:
